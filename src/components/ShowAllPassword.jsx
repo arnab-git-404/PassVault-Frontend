@@ -39,7 +39,8 @@ const { masterKey, masterSalt   } = useMasterPassword();
   const [deleteId, setDeleteId] = useState(null);
   const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
 
-  const serverURL = "http://127.0.0.1:8000";
+  // const serverURL = "http://127.0.0.1:8000";
+  const serverURL = import.meta.env.VITE_APP_SERVER_URL;
   const token = localStorage.getItem("token");
 
   useEffect(() => {

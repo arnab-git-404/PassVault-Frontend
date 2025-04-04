@@ -13,7 +13,9 @@ export default function TwoFactorAuth() {
   const [verifying, setVerifying] = useState(false);
 
 
-  const serverUrl = "http://127.0.0.1:8000";
+  // const serverUrl = "http://127.0.0.1:8000";
+  const serverURL = import.meta.env.VITE_APP_SERVER_URL;
+
   console.log("2FA User Email: ", user.email);
 
   console.log("2FA Enabled: ", user.is_2FA_Enabled);
@@ -28,7 +30,7 @@ export default function TwoFactorAuth() {
   const enable2FA = () => {
     setLoading(true);
     axios
-      .post(`${serverUrl}/api/user/2fa/enable`, { email: email })
+      .post(`${serverURL}/api/user/2fa/enable`, { email: email })
       .then((response) => {
         setQrCode(response.data.qrCode);
         setLoading(false);
@@ -50,7 +52,7 @@ export default function TwoFactorAuth() {
       setVerifying(true);
       console.log("this is in verify2FA", email, verificationCode);
       axios
-        .post(`${serverUrl}/api/user/2fa/verify`, {
+        .post(`${serverURL}/api/user/2fa/verify`, {
           email: email,
           verification_code: verificationCode,
         })
