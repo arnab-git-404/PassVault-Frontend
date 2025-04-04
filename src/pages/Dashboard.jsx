@@ -1465,7 +1465,7 @@ export default function Dashboard() {
   const { user, userLoggedIn, logoutUser, loginUser } = useGlobalContext();
   const { isSetup, isUnlocked, lockVault } = useMasterPassword();
 
-  const serverURL = "http://127.0.0.1:8000";
+  const serverURL = import.meta.env.VITE_APP_SERVER_URL;
   const token = localStorage.getItem("token");
 
   // Handle resize events for responsive design
