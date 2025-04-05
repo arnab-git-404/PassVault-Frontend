@@ -339,7 +339,7 @@ import {
   GoogleAuthProvider,
 } from "firebase/auth";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
-import { toast } from "react-toastify";
+// import { toast } from "react-toastify";
 import { useGlobalContext } from "../context/context";
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
