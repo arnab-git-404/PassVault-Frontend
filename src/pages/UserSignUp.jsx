@@ -12,7 +12,6 @@
 // import { useContext } from "react";
 // import { useGlobalContext } from "../context/context";
 
-
 // import { initializeApp } from "firebase/app";
 // import { getAnalytics } from "firebase/analytics";
 
@@ -326,26 +325,16 @@
 
 // export default UserSignUp;
 
-
-
-
-
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { FaGoogle , FaSpinner } from "react-icons/fa";
-import {
-  getAuth,
-  signInWithPopup,
-  GoogleAuthProvider,
-} from "firebase/auth";
+import { FaGoogle, FaSpinner } from "react-icons/fa";
+import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 // import { toast } from "react-toastify";
 import { useGlobalContext } from "../context/context";
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
-import { toast } from 'react-hot-toast';
-
-
+import { toast } from "react-hot-toast";
 
 // Firebase config - keeping exactly as provided by Firebase
 const firebaseConfig = {
@@ -375,10 +364,8 @@ function UserSignUp() {
   const serverURL = import.meta.env.VITE_APP_SERVER_URL;
   const navigate = useNavigate();
 
-
   const { loginUser, userLoggedIn } = useGlobalContext();
 
-  
   // Use useEffect for redirection
   useEffect(() => {
     if (userLoggedIn) {
@@ -394,22 +381,22 @@ function UserSignUp() {
     try {
       // Create a new provider instance each time
       const provider = new GoogleAuthProvider();
-      
+
       // Add scopes if needed
-      provider.addScope('profile');
-      provider.addScope('email');
-      
+      provider.addScope("profile");
+      provider.addScope("email");
+
       // Set custom parameters
       provider.setCustomParameters({
-        prompt: 'select_account'
+        prompt: "select_account",
       });
-      
+
       // Sign in with popup
       const result = await signInWithPopup(auth, provider);
-      
+
       // Extract user info
       const user = result.user;
-      
+
       console.log("Google Sign-In successful", user);
 
       // Extract needed user info
@@ -434,8 +421,8 @@ function UserSignUp() {
       // }
 
       const data = await res.json();
-      
-      console.log(data)
+
+      console.log(data);
 
       if (data.status_code === 200) {
         toast.success(data.message || "Google authentication successful");
@@ -447,21 +434,27 @@ function UserSignUp() {
       }
     } catch (error) {
       console.error("Error signing in with Google: ", error);
-      
+
       // Detailed error handling
       if (error.code) {
-        switch(error.code) {
-          case 'auth/configuration-not-found':
-            toast.error("Firebase configuration error. Please verify Google Auth is enabled in Firebase console.");
+        switch (error.code) {
+          case "auth/configuration-not-found":
+            toast.error(
+              "Firebase configuration error. Please verify Google Auth is enabled in Firebase console."
+            );
             break;
-          case 'auth/popup-blocked':
-            toast.error("Popup was blocked by your browser. Please allow popups for this site.");
+          case "auth/popup-blocked":
+            toast.error(
+              "Popup was blocked by your browser. Please allow popups for this site."
+            );
             break;
-          case 'auth/popup-closed-by-user':
+          case "auth/popup-closed-by-user":
             toast.error("Authentication canceled. Please try again.");
             break;
-          case 'auth/unauthorized-domain':
-            toast.error("This domain is not authorized for OAuth operations. Add it in the Firebase console.");
+          case "auth/unauthorized-domain":
+            toast.error(
+              "This domain is not authorized for OAuth operations. Add it in the Firebase console."
+            );
             break;
           default:
             toast.error(`Authentication error: ${error.message}`);
@@ -510,7 +503,7 @@ function UserSignUp() {
       });
 
       const data = await res.json();
-      console.log("SignUp Data: ",data);
+      console.log("SignUp Data: ", data);
 
       if (data.status_code === 400) {
         toast.error(data.message);
@@ -525,7 +518,7 @@ function UserSignUp() {
     } catch (error) {
       console.error("Error signing up: ", error.message);
       toast.error("Failed to sign up: " + error.message);
-    } finally{
+    } finally {
       setStoringDataToDB(false);
     }
   };
@@ -544,11 +537,10 @@ function UserSignUp() {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-
         },
         body: JSON.stringify({
           email,
-          purpose:'authentication',
+          purpose: "authentication",
         }),
       });
 
@@ -560,19 +552,17 @@ function UserSignUp() {
       const data = await res.json();
       console.log(data);
 
-      if(data.status_code === 200) {
+      if (data.status_code === 200) {
         toast.success("OTP sent successfully!");
       } else {
         toast.error("Failed to send OTP, please try again.");
-        console.log("Failed TO Send OTP: ",data.message);
+        console.log("Failed TO Send OTP: ", data.message);
       }
-
     } catch (error) {
       console.log(error);
       toast.error("Failed to send OTP");
     } finally {
       setSendingOTP(false);
-
     }
   };
 
@@ -647,9 +637,8 @@ function UserSignUp() {
               </div>
 
               <div className="mb-3 flex justify-between">
-                
                 <div>
-                <label
+                  <label
                     htmlFor="otp"
                     className="block text-lg font-medium text-gray-700"
                   >
@@ -665,8 +654,6 @@ function UserSignUp() {
                     placeholder="Check Your Email For OTP"
                   />
                 </div>
-
-
 
                 {/* <button
                   type="button"
@@ -690,29 +677,23 @@ function UserSignUp() {
                   ) : (
                     "Send Code"
                   )}
-                  
                 </button>
-
-
-
               </div>
+              
               <div className="flex justify-center hover:cursor-pointer">
                 <button
-                  className="w-full py-2 px-4 border border-transparent rounded-md shadow-sm text-lg font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                  className=" hover:cursor-pointer w-full py-2 px-4 border border-transparent rounded-md shadow-sm text-lg font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                   id="loginButton"
                   type="submit"
                 >
-
-                                    {storingDataToDB ? (
-                                        <>
-                                          <FaSpinner className="inline mr-2 animate-spin" />
-                                          Registering...
-                                        </>
-                                      ) : (
-                                        "Sign Up"
-                                      )}
-                  
-
+                  {storingDataToDB ? (
+                    <>
+                      <FaSpinner className="inline mr-2 animate-spin" />
+                      Registering...
+                    </>
+                  ) : (
+                    "Sign Up"
+                  )}
                 </button>
               </div>
 
