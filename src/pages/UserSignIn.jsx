@@ -597,7 +597,7 @@ function UserSignIn() {
 
               <button
                 onClick={handleGoogleSignIn}
-                className="flex items-center w-full justify-center py-2 px-4 border border-gray-300 rounded-md shadow-sm text-lg font-medium text-white bg-indigo-600 hover:bg-indigo-700"
+                className=" hover:cursor-pointer flex items-center w-full justify-center py-2 px-4 border border-gray-300 rounded-md shadow-sm text-lg font-medium text-white bg-indigo-600 hover:bg-indigo-700"
               >
                 <FaGoogle className="mr-2" /> Sign Up with Google
               </button>
