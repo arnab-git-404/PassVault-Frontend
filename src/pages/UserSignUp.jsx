@@ -374,8 +374,10 @@ function UserSignUp() {
   const serverURL = import.meta.env.VITE_APP_SERVER_URL;
   const navigate = useNavigate();
 
+
   const { loginUser, userLoggedIn } = useGlobalContext();
 
+  
   // Use useEffect for redirection
   useEffect(() => {
     if (userLoggedIn) {
