@@ -2,7 +2,10 @@ import { useState } from "react";
 import { LogOut, Settings, Download, Star, Search, User } from "lucide-react";
 import Profile from "./Profile";
 import { useGlobalContext } from "../context/context";
-import { toast } from "react-toastify";
+// import { toast } from "react-toastify";
+
+import { toast } from 'react-hot-toast';
+
 import { useMasterPassword } from "../context/MasterPasswordContext";
 import { useNavigate } from "react-router-dom";
 

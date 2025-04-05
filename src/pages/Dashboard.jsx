@@ -1438,8 +1438,9 @@ import {
   FaWrench
 } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
+// import { toast } from "react-toastify";
 
+import { toast } from 'react-hot-toast';
 import ProfileModal from "../components/ProfileModal";
 import Profile from "../components/Profile";
 import TwoFactorAuth from "../components/TwoFactorAuth";

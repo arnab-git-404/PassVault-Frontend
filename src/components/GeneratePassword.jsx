@@ -1,6 +1,10 @@
 import { useState } from "react";
 
-import { ToastContainer, toast } from "react-toastify";
+// import { ToastContainer, toast } from "react-toastify";
+
+import { toast } from 'react-hot-toast';
+
+
 import SignUpModal from "./SignUpModal";
 import { useGlobalContext } from "../context/context";
 

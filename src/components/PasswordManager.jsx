@@ -1,6 +1,8 @@
 
 import React, { useState } from "react";
-import { toast } from "react-toastify";
+// import { toast } from "react-toastify";
+import { toast } from 'react-hot-toast';
+
 import GeneratePassword from "./GeneratePassword";
 import { useGlobalContext } from "../context/context";
 import { useMasterPassword } from "../context/MasterPasswordContext";

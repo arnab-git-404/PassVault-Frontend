@@ -243,7 +243,10 @@
 
 
 import React, { useState } from "react";
-import { toast } from "react-toastify";
+// import { toast } from "react-toastify";
+
+import { toast } from 'react-hot-toast';
+
 import { useMasterPassword } from "../context/MasterPasswordContext";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 

@@ -258,7 +258,10 @@
 
 
 import React, { useState, useEffect, useCallback } from "react";
-import { toast } from "react-toastify";
+// import { toast } from "react-toastify";
+
+import { toast } from 'react-hot-toast';
+
 import GlobalContext from "./context";
 
 export const GlobalProvider = ({ children }) => {

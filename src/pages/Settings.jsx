@@ -13,7 +13,9 @@ import {
   FaCog,
 
 } from "react-icons/fa";
-import { toast } from "react-toastify";
+// import { toast } from "react-toastify";
+
+import { toast } from 'react-hot-toast';
 import { useGlobalContext } from "../context/context";
 import { useMasterPassword } from "../context/MasterPasswordContext";
 

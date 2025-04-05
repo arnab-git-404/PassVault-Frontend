@@ -3,7 +3,10 @@
 import { useState, useEffect } from "react";
 import { useGlobalContext } from "../context/context";
 import { useMasterPassword } from "../context/MasterPasswordContext";
-import { toast } from "react-toastify";
+// import { toast } from "react-toastify";
+
+import { toast } from 'react-hot-toast';
+
 import {
   FaEye,
   FaEyeSlash,

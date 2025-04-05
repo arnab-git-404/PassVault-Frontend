@@ -402,7 +402,10 @@
 
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { toast } from "react-toastify";
+// import { toast } from "react-toastify";
+import { toast } from 'react-hot-toast';
+
+
 import { FaEye, FaEyeSlash, FaSpinner } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import { useGlobalContext } from "../context/context";

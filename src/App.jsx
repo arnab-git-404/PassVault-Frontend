@@ -1,6 +1,5 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import{ Toaster } from 'react-hot-toast';
 
@@ -21,7 +20,7 @@ function App() {
   return (
     <>
       <Router>
-        <ToastContainer theme="dark" />
+        {/* <ToastContainer theme="dark" /> */}
         
         <Toaster />
 

@@ -3,7 +3,10 @@ import { useGlobalContext } from "../context/context";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { useMasterPassword } from "../context/MasterPasswordContext";
-import { toast } from "react-toastify";
+// import { toast } from "react-toastify";
+
+import { toast } from 'react-hot-toast';
+
 
 export default function Profile() {
 

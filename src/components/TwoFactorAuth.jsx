@@ -1,7 +1,10 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { useGlobalContext } from "../context/context";
-import { toast } from "react-toastify";
+// import { toast } from "react-toastify";
+
+
+import { toast } from 'react-hot-toast';
 
 export default function TwoFactorAuth() {
   const { user } = useGlobalContext();

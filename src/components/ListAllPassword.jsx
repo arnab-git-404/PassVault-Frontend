@@ -288,7 +288,10 @@ import { version } from "react"
 
 import { useState, useEffect } from "react";
 import { useGlobalContext } from "../context/context";
-import { toast } from "react-toastify";
+// import { toast } from "react-toastify";
+
+import { toast } from 'react-hot-toast';
+
 import { FaEye, FaEyeSlash, FaCopy, FaTrash, FaEdit, FaTimes } from "react-icons/fa";
 
 export default function ListAllPassword({ prefilledPassword = "" }) {

@@ -4,7 +4,10 @@ import {
   encryptPassword,
   decryptPassword,
 } from "../utility/CryptoUtils";
-import { toast } from "react-toastify";
+// import { toast } from "react-toastify";
+
+import { toast } from 'react-hot-toast';
+
 import axios from "axios";
 import { useGlobalContext } from "./context";
 
