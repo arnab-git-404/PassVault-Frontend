@@ -2,6 +2,8 @@ import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import{ Toaster } from 'react-hot-toast';
+
 
 // Pages
 import LandingPage from "./pages/LandingPage";
@@ -21,6 +23,8 @@ function App() {
       <Router>
         <ToastContainer theme="dark" />
         
+        <Toaster />
+
         <Routes>
           {/* Public Routes */}
           <Route exact path="/" element={<LandingPage />} />
