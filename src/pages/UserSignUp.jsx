@@ -343,6 +343,7 @@ import { toast } from "react-toastify";
 import { useGlobalContext } from "../context/context";
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
+import { toast } from 'react-hot-toast';
 
 
 
