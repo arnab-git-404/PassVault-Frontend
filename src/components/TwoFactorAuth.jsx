@@ -17,7 +17,6 @@ export default function TwoFactorAuth() {
   const serverURL = import.meta.env.VITE_APP_SERVER_URL;
 
   console.log("2FA User Email: ", user.email );
-
   console.log("2FA Enabled: ", user.is_2FA_Enabled);
 
   useEffect(() => {

@@ -37,6 +37,7 @@ function Settings() {
   const [otpEmail, setOtpEmail] = useState("");
   const [otp, setOtp] = useState("");
   const [sendingOTP, setSendingOTP] = useState(false);
+
   const serverURL = import.meta.env.VITE_APP_SERVER_URL;
 
   // user current state 
@@ -298,7 +299,7 @@ function Settings() {
           Authorization: `Bearer ${token}`,
         },
         body: JSON.stringify({
-          // email: user.email,
+          email: user.email,
           purpose: "master_key_reset",
         }),
       });
