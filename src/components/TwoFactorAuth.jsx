@@ -46,8 +46,6 @@ export default function TwoFactorAuth() {
 
     // Verify 2FA Code
     const verify2FA = () => {
-
-      console.log("Button Clicked");
       
       if (!verificationCode.trim()) {
         toast.error("Please enter the verification code");
@@ -55,10 +53,10 @@ export default function TwoFactorAuth() {
       }
       
       setVerifying(true);
-      console.log("this is in verify2FA", email, verificationCode);
+      console.log("this is in verify2FA", user.email );
       axios
         .post(`${serverURL}/api/user/2fa/verify`, {
-          email: email,
+          email: user.email,
           verification_code: verificationCode,
         })
         .then((response) => {
