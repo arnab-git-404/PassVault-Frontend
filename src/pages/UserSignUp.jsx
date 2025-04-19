@@ -16,31 +16,7 @@
 // import { getAnalytics } from "firebase/analytics";
 
 // // Firebase config (replace with your actual config)
-// const firebaseConfig = {
-//   apiKey: "AIzaSyDv4YE_nD1kVZtK5Y2zvYdbKekNWttpvk4",
-//   authDomain: "passvault-f36db.firebaseapp.com",
-//   projectId: "passvault-f36db",
-//   storageBucket: "passvault-f36db.firebasestorage.app",
-//   messagingSenderId: "51233071431",
-//   appId: "1:51233071431:web:c48c786903a5acb18bac62",
-//   measurementId: "G-YBTQT6X9EE",
-// };
 
-// // Initialize Firebase
-// const app = initializeApp(firebaseConfig);
-// const analytics = getAnalytics(app);
-
-// function UserSignUp() {
-//   const [email, setEmail] = useState("");
-//   const [password, setPassword] = useState("");
-//   const [name, setName] = useState("");
-//   const [otp, setOTP] = useState("");
-//   const navigate = useNavigate();
-//   const [showPassword, setShowPassword] = useState(false);
-
-//   const serverURL = import.meta.env.VITE_APP_SERVER_URL;
-
-//   const { loginUser, userLoggedIn } = useGlobalContext();
 
 //   if (userLoggedIn) {
 //     navigate("/dashboard");
