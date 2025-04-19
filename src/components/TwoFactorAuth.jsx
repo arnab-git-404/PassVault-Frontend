@@ -46,6 +46,9 @@ export default function TwoFactorAuth() {
 
     // Verify 2FA Code
     const verify2FA = () => {
+
+      console.log("Button Clicked");
+      
       if (!verificationCode.trim()) {
         toast.error("Please enter the verification code");
         return;
