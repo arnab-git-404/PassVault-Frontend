@@ -332,23 +332,6 @@
 //           email,
 //           purpose
 //         }),
-//       });
-
-//       if (!res.ok) {
-//         throw new Error("Failed to send OTP");
-        
-//         toast.error("Failed to send OTP");
-//       }
-
-//       const data = await res.json();
-// @ -86,8 +82,6 @@ function UserForgetPassword() {
-//     } catch (error) {
-//       console.log(error);
-//       toast.error("Failed to send OTP");
-//     } finally{
-//       setSendingOTP(false);
-//     }
-//   };
 
 
 
