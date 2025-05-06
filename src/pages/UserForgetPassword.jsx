@@ -180,18 +180,6 @@
 //                     className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
 //                     id="cnfPassword"
 //                     name="cnfPassword"
-//                     value={cnfPassword}
-//                     onChange={(e) => setCnfPassword(e.target.value)}
-//                     placeholder="Confirm Password"
-//                   />
-//                   <div
-//                     className="absolute inset-y-0 right-0 pr-3 flex items-center cursor-pointer mt-6 text-2xl "
-//                     onClick={togglePasswordVisibility}
-//                   >
-//                     {showPassword ? <FaEye /> : <FaEyeSlash />}
-//                   </div>
-//                 </div>
-
 
 
 
