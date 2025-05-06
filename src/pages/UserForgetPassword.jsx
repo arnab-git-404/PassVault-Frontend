@@ -208,14 +208,6 @@
 //                   Forget Password
 //                 </div>
 
-//                 <div className="mb-3">
-//                   <label
-//                     htmlFor="email"
-//                     className="block text-lg font-medium text-gray-700"
-//                   >
-//                     Email
-//                   </label>
-//                   <input
 
 
 
