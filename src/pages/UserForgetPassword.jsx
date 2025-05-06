@@ -108,17 +108,6 @@
 //         headers: {
 //           "Content-Type": "application/json",
 //         },
-//         body: JSON.stringify({
-//           email,
-//           otp,
-//           newPassword,
-//         }),
-//       });
-
-//       const data = await res.json();
-//       console.log(data);
-
-
 
 
 
