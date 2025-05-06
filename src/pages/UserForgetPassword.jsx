@@ -309,19 +309,6 @@
 //   const [sendingOTP, setSendingOTP] = useState(false);
 
 
-//   const serverURL = import.meta.env.VITE_APP_SERVER_URL;
-
-//   const navigate = useNavigate();
-
-//   const purpose = "reset_password"
-
-//   const submitOtpHandler = async (e) => {
-//     e.preventDefault();
-//     try {
-// @ -63,7 +61,6 @@ function UserForgetPassword() {
-//     }
-
-
 
 
 
