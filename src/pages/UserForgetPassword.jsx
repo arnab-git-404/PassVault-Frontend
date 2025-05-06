@@ -97,12 +97,6 @@
 //       return;
 //     }
 
-//     if (newPassword !== cnfPassword) {
-//       toast.error("Passwords do not match");
-//       return;
-//     }
-
-
 
 
 
