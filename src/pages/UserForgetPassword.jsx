@@ -350,20 +350,6 @@
 //     }
 //   };
 
-// @ -251,23 +245,13 @@ function UserForgetPassword() {
-//                       placeholder="Check Your Email For Otp"
-//                     />
-//                   </div>
-//                 <button
-//                   type="button"
-//                   onClick={sendOTP}
-//                   disabled={sendingOTP}
-//                   className="mt-5 block px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-//                 >
-//                   {sendingOTP ? (
-//                     <>
-
-
 
 
 
