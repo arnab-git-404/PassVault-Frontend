@@ -144,14 +144,6 @@
 //                   Enter New Password
 //                 </div>
 
-//                 <div className="mb-3 relative">
-//                   <label
-//                     htmlFor="password"
-//                     className="block text-lg font-medium text-gray-700"
-//                   >
-//                     Password
-//                     onChange={(e) => setNewPassword(e.target.value)}
-
 
 
 
