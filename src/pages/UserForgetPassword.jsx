@@ -133,16 +133,6 @@
 //   };
 
 
-//   return (
-//     <div className=" bg-gray-900 flex items-center min-h-screen w-full justify-center">
-//       <div className="w-full max-w-md  mx-2 lg:mx-4">
-//         <div className="bg-white shadow-lg rounded-lg pb-5 pt-2 mt-5">
-//           <div className="px-5 pt-4">
-//             {otpVerfied ? (
-//               <form onSubmit={sumbitNewPassword}>
-//                 <div className="text-3xl sm:text-4xl mb-5 font-medium text-gray-800 text-center">
-//                   Enter New Password
-//                 </div>
 
 
 
