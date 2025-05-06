@@ -291,24 +291,6 @@
 
 
 
-// @ -1,9 +1,9 @@
-// import React, { useContext, useEffect, useState } from "react";
-// import { Link } from "react-router-dom";
-// import { toast } from "react-toastify";
-// import { FaEye, FaEyeSlash } from "react-icons/fa";
-// import { useNavigate } from "react-router-dom";
-// import { useGlobalContext } from "../context/context";
-// import { FaGoogle, FaEye, FaEyeSlash, FaSpinner } from "react-icons/fa";
-
-
-// function UserForgetPassword() {
-// @ -14,14 +14,12 @@ function UserForgetPassword() {
-//   const [cnfPassword, setCnfPassword] = useState("");
-//   const [showPassword, setShowPassword] = useState(false);
-//   const {logoutUser} = useGlobalContext();
-//   const [sendingOTP, setSendingOTP] = useState(false);
-
-
 
 
 
