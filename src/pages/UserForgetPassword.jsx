@@ -321,17 +321,6 @@
 // @ -63,7 +61,6 @@ function UserForgetPassword() {
 //     }
 
-//     try {
-//       setSendingOTP(true);
-//       const res = await fetch(`${serverURL}/api/user/send-otp`, {
-//         method: "POST",
-//         headers: {
-// @ -71,13 +68,12 @@ function UserForgetPassword() {
-//         },
-//         body: JSON.stringify({
-//           email,
-//           purpose
-//         }),
 
 
 
