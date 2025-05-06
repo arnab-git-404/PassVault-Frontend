@@ -192,22 +192,6 @@
 //                   </div>
 //                 </div>
 
-//                 <div className="flex justify-center">
-//                   <button
-//                     className=" hover:cursor-pointer w-full py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-//                     id="loginButton"
-//                     type="submit"
-//                   >
-//                     Reset Password
-//                   </button>
-//                 </div>
-//               </form>
-//             ) : (
-//               <form onSubmit={submitOtpHandler}>
-//                 <div className="text-3xl sm:text-4xl mb-5 font-medium text-gray-800 text-center">
-//                   Forget Password
-//                 </div>
-
 
 
 
