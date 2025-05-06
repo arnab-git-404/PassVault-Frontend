@@ -172,8 +172,6 @@
 //                   <label
 //                     htmlFor="cnfPassword"
 //                     className="block text-lg font-medium text-gray-700"
-//                   >
-//                     Confirm Password
 //                   </label>
 //                   <input
 //                     type={showPassword ? "text" : "password"}
