@@ -158,14 +158,6 @@
 //                     name="password"
 //                     value={newPassword}
 //                     onChange={(e) => setNewPassword(e.target.value)}
-//                     placeholder="Enter New Password"
-//                   />
-//                   <div
-//                     className="absolute inset-y-0 right-0 pr-3 flex items-center cursor-pointer mt-6 text-2xl "
-//                     onClick={togglePasswordVisibility}
-//                   >
-//                     {showPassword ? <FaEye /> : <FaEyeSlash />}
-//                   </div>
 
 
 
