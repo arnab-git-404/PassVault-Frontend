@@ -266,25 +266,6 @@
 //               </form>
 //             )}
 //             <div>
-//               <p className=" mt-6 text-center text-sm">
-//                 Already have an account? &nbsp; &nbsp;|&nbsp; &nbsp;
-//                 <Link
-//                   to={"/signin"}
-//                   className="font-bold text-indigo-600 hover:text-indigo-500"
-//                 >
-//                   Sign In
-//                 </Link>
-//               </p>
-//             </div>
-//           </div>
-//         </div>
-//       </div>
-//     </div>
-//   );
-// }
-
-// export default UserForgetPassword;
-
 
 
 
