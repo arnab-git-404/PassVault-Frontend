@@ -118,20 +118,6 @@
 //       const data = await res.json();
 //       console.log(data);
 
-//       if (data.status_code === 200) {
-//         toast.success("Password reset successfully!");
-//         logoutUser();
-//         setOtpVerified(false);
-//         navigate("/signin");
-//       } else {
-//         toast.error(data.message);
-//       }
-//     } catch (error) {
-//       console.log("Failed To reset PassWord: ",error);
-//       toast.error("An error occurred during password reset.");
-//     }
-//   };
-
 
 
 
