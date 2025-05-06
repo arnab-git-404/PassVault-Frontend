@@ -102,12 +102,6 @@
 //       return;
 //     }
 
-//     try {
-//       const res = await fetch(`${serverURL}/api/user/reset-password`, {
-//         method: "POST",
-//         headers: {
-//           "Content-Type": "application/json",
-//         },
 
 
 
