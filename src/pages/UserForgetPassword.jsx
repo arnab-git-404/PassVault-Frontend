@@ -362,24 +362,7 @@
 //                 >
 //                   {sendingOTP ? (
 //                     <>
-//                       <FaSpinner className="inline mr-2 animate-spin" />
-//                       Sending...
-//                     </>
-//                   ) : (
-//                     "Send Code"
-//                   )}
-//                 </button>
 
-
-//                   <button
-//                     className=" hover:cursor-pointer mt-5 block  px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-//                     onClick={sendOTP}
-//                   >
-//                     Send Code
-//                   </button>
-//                 </div>
-
-//                 <div className="flex justify-center">
 
 
 
