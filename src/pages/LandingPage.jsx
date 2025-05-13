@@ -39,10 +39,12 @@ export default function LandingPage() {
     return () => clearInterval(timer);
   }, []);
 
+
   const toggleFaq = (index) => {
     setActiveFaq(activeFaq === index ? null : index);
   };
 
+  
   // FAQ data
   const faqData = [
     {
