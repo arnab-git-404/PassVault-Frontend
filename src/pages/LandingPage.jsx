@@ -16,22 +16,34 @@ import {
   FaShieldAlt,
   FaLockOpen,
   FaExclamationCircle,
-
+  FaPlus,
+  FaCode,
+  FaArrowDown,
+  FaFileAlt,
+  FaUserShield,
+  FaServer,
+  FaLockOpen,
+  FaExclamationCircle,
+  FaExclamationTriangle,
+  FaCheck,
+  FaFingerprint,
+  FaArrowRight,
+  FaArrowRight,
+  FaDatabase,
 } from "react-icons/fa";
 
 export default function LandingPage() {
   const [activeFaq, setActiveFaq] = useState(null);
   const [animationStep, setAnimationStep] = useState(0);
 
-
   // Cycle through animation steps
-    useEffect(() => {
-      const timer = setInterval(() => {
-        setAnimationStep((prev) => (prev + 1) % 4);
-      }, 3000);
-  
-      return () => clearInterval(timer);
-    }, []);
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setAnimationStep((prev) => (prev + 1) % 4);
+    }, 3000);
+
+    return () => clearInterval(timer);
+  }, []);
 
   const toggleFaq = (index) => {
     setActiveFaq(activeFaq === index ? null : index);
@@ -124,7 +136,6 @@ export default function LandingPage() {
           </div>
         </div>
       </div>
-
 
       {/* Master Password Security Flow Visualization */}
 
@@ -534,7 +545,8 @@ export default function LandingPage() {
                 </li>
                 <li>
                   Your vault uses{" "}
-                  <span className="text-green-300 font-mono">AES-256-GCM</span> to encryption for all passwords
+                  <span className="text-green-300 font-mono">AES-256-GCM</span>{" "}
+                  to encryption for all passwords
                 </li>
                 <li>
                   Each password has its own{" "}
@@ -551,8 +563,6 @@ export default function LandingPage() {
           </div>
         </div>
       </div>
-
-
 
       {/* Improved FAQ Section */}
       <div className="bg-gray-900 rounded-xl p-6 mb-8 md:w-2/3 mt-16 w-full max-w-6xl">
@@ -653,7 +663,6 @@ export default function LandingPage() {
               </div>
             </div>
 
-
             {/* Quick Links */}
             <div>
               <h3 className="text-xl font-bold mb-4 text-gray-100">
@@ -749,8 +758,6 @@ export default function LandingPage() {
                 </li>
               </ul>
             </div>
-
-
           </div>
 
           {/* Copyright and bottom links */}
