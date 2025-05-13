@@ -1082,6 +1082,9 @@ export default function Home({ isSetup, isUnlocked, onSetupClick }) {
           </div>
         </div>
       </div>
+
+
+      
     </div>
   );
 }
