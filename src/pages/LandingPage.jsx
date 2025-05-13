@@ -22,13 +22,9 @@ import {
   FaFileAlt,
   FaUserShield,
   FaServer,
-
   FaExclamationTriangle,
   FaCheck,
   FaFingerprint,
-
-
-
 } from "react-icons/fa";
 
 export default function LandingPage() {
