@@ -30,7 +30,7 @@ export default function LandingPage() {
   const [activeFaq, setActiveFaq] = useState(null);
   const [animationStep, setAnimationStep] = useState(0);
 
-  // Cycle through animation steps
+  // Cycle through animation steps 
   useEffect(() => {
     const timer = setInterval(() => {
       setAnimationStep((prev) => (prev + 1) % 4);
@@ -44,7 +44,7 @@ export default function LandingPage() {
     setActiveFaq(activeFaq === index ? null : index);
   };
 
-  
+
   // FAQ data
   const faqData = [
     {
