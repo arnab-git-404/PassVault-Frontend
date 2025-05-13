@@ -19,7 +19,6 @@ import {
   FaPlus,
   FaCode,
   FaArrowDown,
-  FaFileAlt,
   FaUserShield,
   FaServer,
   FaExclamationTriangle,
