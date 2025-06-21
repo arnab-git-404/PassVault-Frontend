@@ -382,8 +382,8 @@ function UserSignIn() {
         profile_picture: user.photoURL,
       };
 
-      const maxRetries = 3;
-      let responseData;
+   const maxRetries = 3;
+      let responseData;   
 
       for (let attempt = 1; attempt <= maxRetries; attempt++) {
         try {

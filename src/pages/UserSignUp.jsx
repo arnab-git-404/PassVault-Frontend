@@ -354,20 +354,15 @@ function UserSignUp() {
   };
 
   const handleGoogleSignIn = async () => {
+
+    const toastId = toast.loading("Signing in with Google...");
+    
+
     try {
-      // Create a new provider instance each time
+
+
+      // Initialize Google Auth Provider
       const provider = new GoogleAuthProvider();
-
-      // Add scopes if needed
-      provider.addScope("profile");
-      provider.addScope("email");
-
-      // Set custom parameters
-      provider.setCustomParameters({
-        prompt: "select_account",
-      });
-
-      // Sign in with popup
       const result = await signInWithPopup(auth, provider);
 
       // Extract user info
@@ -383,31 +378,61 @@ function UserSignUp() {
         profile_picture: user.photoURL,
       };
 
-      // Call your backend API
-      const res = await fetch(`${serverURL}/api/google/google-auth`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(userData),
-      });
+      const maxRetries = 3;
+      let responseData; 
 
-      // if (!res.ok) {
-      //   throw new Error(`Server returned ${res.status}: ${res.statusText}`);
-      // }
+        for (let attempt = 1; attempt <= maxRetries; attempt++) {
+          try {
+            // Call backend API
+            const res = await fetch(`${serverURL}/api/google/google-auth`, {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify(userData),
+            });
+            if (res.status === 200) {
+              responseData = await res.json();
+              break; // Success, exit the loop
+            }
+            // If it's a server error and we have retries left, wait and continue
+            if (res.status >= 500 && attempt < maxRetries) {
+              console.warn(`Attempt ${attempt} failed. Retrying...`);
+              await new Promise((resolve) => setTimeout(resolve, 1500)); // Wait 1.5 seconds
+              continue;
+            }
+  
+            // For other errors (like 4xx) or last attempt, get data and break
+            responseData = await res.json();
+            break;
+          } catch (networkError) {
+            if (attempt < maxRetries) {
+              console.warn(
+                `Attempt ${attempt} failed with network error. Retrying...`
+              );
+              await new Promise((resolve) => setTimeout(resolve, 1500));
+            } else {
+              throw networkError; // Throw error after last attempt
+            }
+          }
+        }
+  
+  
+  
+        // const data = await res.json();
+        if (!responseData) {
+          toast.error("Authentication failed. Please try again.");
+          return;
+        }
+        console.log("Data From Google Auth API: ", responseData);
 
-      
-      const data = await res.json();
-
-      console.log(data);
-
-      if (data.status_code === 200) {
-        toast.success(data.message || "Google authentication successful");
-        localStorage.setItem("token", data.token);
-        loginUser(data.user);
+      if (responseData.status_code === 200) {
+        toast.success(responseData.message || "Google authentication successful", {id: toastId});
+        localStorage.setItem("token", responseData.token);
+        loginUser(responseData.user);
         navigate("/dashboard");
       } else {
-        toast.error(data.message || "Authentication failed");
+        toast.error(responseData.message || "Authentication failed", {id: toastId});
       }
     } catch (error) {
       console.error("Error signing in with Google: ", error);
