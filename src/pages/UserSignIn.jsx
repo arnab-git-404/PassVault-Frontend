@@ -363,15 +363,18 @@ function UserSignIn() {
 
   const handleGoogleSignIn = async (e) => {
     e.preventDefault(); // Prevent default form submission behavior
-    toast.loading("Signing in with Google...");
 
+    const toastId = toast.loading("Signing in with Google...");
+    
     try {
+
+
       const provider = new GoogleAuthProvider();
       const result = await signInWithPopup(auth, provider);
-
+      
       const user = result.user;
       console.log("Google Sign In", user);
-
+      
       const userData = {
         name: user.displayName,
         email: user.email,
@@ -428,15 +431,16 @@ function UserSignIn() {
       console.log("Data From Google Auth API: ", responseData);
 
       if (responseData.status_code === 200) {
-        toast.success(responseData.message || "Google authentication successful");
+        toast.success(responseData.message || "Google authentication successful", {id: toastId});
         localStorage.setItem("token", responseData.token);
         loginUser(responseData.user);
         navigate("/dashboard");
       } else {
-        toast.error(responseData.message || "Authentication failed");
+        toast.error(responseData.message || "Authentication failed", {id: toastId});
       }
     } catch (error) {
       console.error("Error signing in with Google: ", error);
+      toast.dismiss(toastId);
 
       // Detailed error handling
       if (error.code) {
