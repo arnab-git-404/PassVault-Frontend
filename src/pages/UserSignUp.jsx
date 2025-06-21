@@ -355,7 +355,7 @@ function UserSignUp() {
 
   const handleGoogleSignIn = async () => {
 
-    const toastId = toast.loading("Signing in with Google...");
+    const toastId = toast.loading("Signing Up with Google...");
     
 
     try {
