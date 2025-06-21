@@ -357,7 +357,7 @@ const MasterPasswordSetup = () => {
         <h1 className="text-green-500 font-bold text-xl mb-4">Master Password Already Created</h1>
         <button
           onClick={handleResetMasterPassword}
-          className="w-full bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
+          className="hover:cursor-pointer w-full bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
         >
           Reset Vault
         </button>
