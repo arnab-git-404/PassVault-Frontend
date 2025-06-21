@@ -120,9 +120,11 @@ export default function LandingPage() {
 
           {/* Call to Action */}
           <div className="mt-8">
+
             <button className="hover:cursor-pointer bg-green-500 px-6 py-3 rounded-lg text-lg hover:bg-green-600 transition-transform transform hover:scale-105 shadow-md hover:shadow-lg">
-              <Link to="/signup">Get Started <FaArrowRight /></Link>
+              <Link to="/signup" className="inline-flex items-center gap-2" >Get Started <FaArrowRight /></Link>
             </button>
+          
           </div>
         </div>
 
