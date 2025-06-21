@@ -244,11 +244,12 @@
 
 import React, { useState } from "react";
 // import { toast } from "react-toastify";
-
 import { toast } from 'react-hot-toast';
+import { useNavigate } from "react-router-dom";
 
 import { useMasterPassword } from "../context/MasterPasswordContext";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+
 
 const MasterPasswordSetup = () => {
   const [masterPassword, setMasterPassword] = useState("");
@@ -258,6 +259,8 @@ const MasterPasswordSetup = () => {
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
   const { setupMasterPassword, isSetup } = useMasterPassword();
+
+  const navigate = useNavigate();
 
   const handleSetup = async () => {
     // Enhanced validation
@@ -309,7 +312,14 @@ const MasterPasswordSetup = () => {
     }
   };
 
-  // console.log(isSetup)
+  const handleResetMasterPassword = () => {
+    toast.success("Forwarding to settings to reset your vault Password...");
+      setTimeout(() => {
+      navigate("/settings");
+    }, 1500);
+  };
+
+  
 
   const renderPasswordInput = (
     label, 
@@ -346,7 +356,7 @@ const MasterPasswordSetup = () => {
       <div className="w-full max-w-md p-6 bg-gray-900 rounded-lg shadow-lg">
         <h1 className="text-green-500 font-bold text-xl mb-4">Master Password Already Created</h1>
         <button
-          onClick={() => toast.info("Vault reset functionality coming soon")}
+          onClick={handleResetMasterPassword}
           className="w-full bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
         >
           Reset Vault
