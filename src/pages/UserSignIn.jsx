@@ -364,7 +364,7 @@ function UserSignIn() {
   const handleGoogleSignIn = async (e) => {
     e.preventDefault(); // Prevent default form submission behavior
     toast.loading("Signing in with Google...");
-    
+
     try {
       const provider = new GoogleAuthProvider();
       const result = await signInWithPopup(auth, provider);
@@ -636,7 +636,7 @@ function UserSignIn() {
                 onClick={handleGoogleSignIn}
                 className=" hover:cursor-pointer flex items-center w-full justify-center py-2 px-4 border border-gray-300 rounded-md shadow-sm text-lg font-medium text-white bg-indigo-600 hover:bg-indigo-700"
               >
-                <FaGoogle className="mr-2" /> Sign Up with Google
+                <FaGoogle className="mr-2" /> Sign In with Google
               </button>
             </div>
 
