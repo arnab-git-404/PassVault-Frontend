@@ -415,20 +415,20 @@ function UserSignIn() {
         }
       }
 
-      const data = await res.json();
+      // const data = await res.json();
       if (!responseData) {
         toast.error("Authentication failed. Please try again.");
         return;
       }
       console.log("Data From Google Auth API: ", responseData);
 
-      if (data.status_code === 200) {
-        toast.success(data.message || "Google authentication successful");
-        localStorage.setItem("token", data.token);
-        loginUser(data.user);
+      if (responseData.status_code === 200) {
+        toast.success(responseData.message || "Google authentication successful");
+        localStorage.setItem("token", responseData.token);
+        loginUser(responseData.user);
         navigate("/dashboard");
       } else {
-        toast.error(data.message || "Authentication failed");
+        toast.error(responseData.message || "Authentication failed");
       }
     } catch (error) {
       console.error("Error signing in with Google: ", error);
