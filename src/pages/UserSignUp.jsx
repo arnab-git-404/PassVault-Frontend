@@ -396,6 +396,7 @@ function UserSignUp() {
       //   throw new Error(`Server returned ${res.status}: ${res.statusText}`);
       // }
 
+      
       const data = await res.json();
 
       console.log(data);

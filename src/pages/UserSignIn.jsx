@@ -363,6 +363,7 @@ function UserSignIn() {
   }, [userLoggedIn, navigate]);
 
   const handleGoogleSignIn = async (e) => {
+    
     try {
       const provider = new GoogleAuthProvider();
       const result = await signInWithPopup(auth, provider);
@@ -377,7 +378,7 @@ function UserSignIn() {
         profile_picture: user.photoURL,
       };
 
-      // Call your backend API
+      // Call backend API
       const res = await fetch(`${serverURL}/api/google/google-auth`, {
         method: "POST",
         headers: {
