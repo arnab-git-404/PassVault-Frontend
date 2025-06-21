@@ -587,7 +587,8 @@ function UserSignIn() {
                 </div>
               </div>
 
-              <div className="mb-3">
+
+              {/* <div className="mb-3">
                 <label
                   htmlFor="gAuthCode"
                   className="block text-lg font-medium text-gray-700"
@@ -603,7 +604,8 @@ function UserSignIn() {
                   onChange={(e) => setgAuthCode(e.target.value)}
                   placeholder="Check Your Authenticator App For OTP"
                 />
-              </div>
+              </div> */}
+
 
               <div className="text-right py-3">
                 <Link
