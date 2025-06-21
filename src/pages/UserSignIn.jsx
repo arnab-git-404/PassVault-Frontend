@@ -362,6 +362,9 @@ function UserSignIn() {
   }, [userLoggedIn, navigate]);
 
   const handleGoogleSignIn = async (e) => {
+    e.preventDefault(); // Prevent default form submission behavior
+    toast.loading("Signing in with Google...");
+    
     try {
       const provider = new GoogleAuthProvider();
       const result = await signInWithPopup(auth, provider);
@@ -414,6 +417,8 @@ function UserSignIn() {
           }
         }
       }
+
+
 
       // const data = await res.json();
       if (!responseData) {
