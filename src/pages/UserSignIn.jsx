@@ -389,7 +389,7 @@ function UserSignIn() {
             },
             body: JSON.stringify(userData),
           });
-          if (res.status_code === 200) {
+          if (res.status === 200) {
             responseData = await res.json();
             break; // Success, exit the loop
           }
