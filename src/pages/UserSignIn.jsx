@@ -317,11 +317,11 @@
 
 import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { FaGoogle,FaSpinner } from "react-icons/fa";
+import { FaGoogle, FaSpinner } from "react-icons/fa";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 // import { toast } from "react-toastify";
 
-import { toast } from 'react-hot-toast';
+import { toast } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { useGlobalContext } from "../context/context";
 import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
@@ -347,9 +347,8 @@ function UserSignIn() {
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [gAuthCode, setgAuthCode] = useState("");
-  const [verifyingPassword, setVerifyingPassword] = useState(false); 
-  
-  
+  const [verifyingPassword, setVerifyingPassword] = useState(false);
+
   const { loginUser, userLoggedIn, setMasterPassword } = useGlobalContext();
   const serverURL = import.meta.env.VITE_APP_SERVER_URL;
 
@@ -363,7 +362,6 @@ function UserSignIn() {
   }, [userLoggedIn, navigate]);
 
   const handleGoogleSignIn = async (e) => {
-    
     try {
       const provider = new GoogleAuthProvider();
       const result = await signInWithPopup(auth, provider);
@@ -378,17 +376,51 @@ function UserSignIn() {
         profile_picture: user.photoURL,
       };
 
-      // Call backend API
-      const res = await fetch(`${serverURL}/api/google/google-auth`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(userData),
-      });
+      const maxRetries = 3;
+      let responseData;
+
+      for (let attempt = 1; attempt <= maxRetries; attempt++) {
+        try {
+          // Call backend API
+          const res = await fetch(`${serverURL}/api/google/google-auth`, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(userData),
+          });
+          if (res.status_code === 200) {
+            responseData = await res.json();
+            break; // Success, exit the loop
+          }
+          // If it's a server error and we have retries left, wait and continue
+          if (res.status >= 500 && attempt < maxRetries) {
+            console.warn(`Attempt ${attempt} failed. Retrying...`);
+            await new Promise((resolve) => setTimeout(resolve, 1500)); // Wait 1.5 seconds
+            continue;
+          }
+
+          // For other errors (like 4xx) or last attempt, get data and break
+          responseData = await res.json();
+          break;
+        } catch (networkError) {
+          if (attempt < maxRetries) {
+            console.warn(
+              `Attempt ${attempt} failed with network error. Retrying...`
+            );
+            await new Promise((resolve) => setTimeout(resolve, 1500));
+          } else {
+            throw networkError; // Throw error after last attempt
+          }
+        }
+      }
 
       const data = await res.json();
-      console.log("Data From Google Auth API: ", data);
+      if (!responseData) {
+        toast.error("Authentication failed. Please try again.");
+        return;
+      }
+      console.log("Data From Google Auth API: ", responseData);
 
       if (data.status_code === 200) {
         toast.success(data.message || "Google authentication successful");
@@ -483,7 +515,7 @@ function UserSignIn() {
     } catch (error) {
       console.error("Failed to Sign In:", error);
       toast.error("Failed to Sign In");
-    } finally{
+    } finally {
       setVerifyingPassword(false);
     }
   };
@@ -579,14 +611,13 @@ function UserSignIn() {
                   type="submit"
                 >
                   {verifyingPassword ? (
-                      <>
-                        <FaSpinner className="inline mr-2 animate-spin" />
-                        Verifying...
-                      </>
-                    ) : (
-                      "Sign In"
-                    )}
-
+                    <>
+                      <FaSpinner className="inline mr-2 animate-spin" />
+                      Verifying...
+                    </>
+                  ) : (
+                    "Sign In"
+                  )}
                 </button>
               </div>
             </form>
