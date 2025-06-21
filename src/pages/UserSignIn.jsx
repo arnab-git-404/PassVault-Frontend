@@ -539,7 +539,7 @@ function UserSignIn() {
         <div className="bg-white shadow-lg rounded-lg pb-5 pt-2 mt-5">
           <div className="px-5 pt-4">
             <form onSubmit={signInHandler}>
-              <div className="text-3xl sm:text-4xl mb-5 font-medium text-gray-800 text-center">
+              <div className="text-3xl sm:text-4xl mb-5 font-bold text-gray-800 text-center">
                 Sign In
               </div>
 
