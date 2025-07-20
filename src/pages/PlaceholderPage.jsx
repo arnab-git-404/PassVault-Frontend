@@ -91,7 +91,7 @@ export default function PlaceholderPage() {
                 <FaHardHat className="text-yellow-400" />
               </div>
               <div>
-                <h2 className="font-bold text-lg mb-2">Under Construction</h2>
+                <h2 className="font-bold text-lg mb-2">Early Stage Of Development</h2>
                 <p className="text-gray-300">
                   We're currently working on this page to provide you with the best experience possible. 
                   Thank you for your patience as we build out our platform.
