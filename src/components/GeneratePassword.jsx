@@ -30,9 +30,7 @@ export default function PasswordGenerator() {
       !includeNumbers &&
       !includeSymbols
     ) {
-      toast.error("Please select at least one option", {
-        position: "top-right",
-      });
+      toast.error("Please select at least one option");
       return;
     }
 
@@ -64,18 +62,14 @@ export default function PasswordGenerator() {
 
   const copyToClipboard = () => {
     if (password === "") {
-      toast.error("No password to copy", {
-        position: "top-right",
-      });
+      toast.error("No password to copy");
       return;
     }
 
     navigator.clipboard.writeText(password);
 
     if (password) {
-      toast.success("Password copied to clipboard", {
-        position: "top-right",
-      });
+      toast.success("Password copied to clipboard");
 
       if (!userLoggedIn) {
         setIsModalOpen(true);
