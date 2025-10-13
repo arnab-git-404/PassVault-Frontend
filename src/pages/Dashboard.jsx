@@ -1435,12 +1435,12 @@ import {
   FaShieldAlt,
   FaSignOutAlt,
   FaCog,
-  FaWrench
+  FaWrench,
 } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 // import { toast } from "react-toastify";
 
-import { toast } from 'react-hot-toast';
+import { toast } from "react-hot-toast";
 import ProfileModal from "../components/ProfileModal";
 import Profile from "../components/Profile";
 import TwoFactorAuth from "../components/TwoFactorAuth";
@@ -1486,7 +1486,6 @@ export default function Dashboard() {
   useEffect(() => {
     function handleClickOutside(event) {
       if (
-        
         isSidebarOpen &&
         sidebarRef.current &&
         !sidebarRef.current.contains(event.target) &&
@@ -1502,8 +1501,6 @@ export default function Dashboard() {
 
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, [isSidebarOpen]);
-
-
 
   // Close modal on outside click
   useEffect(() => {
@@ -1626,7 +1623,6 @@ export default function Dashboard() {
       case "LogOut":
         return <div className="text-center">Logging out...</div>;
 
-
       case "MasterPasswordSetup":
         return <MasterPasswordSetup />;
       case "Settings":
@@ -1644,13 +1640,12 @@ export default function Dashboard() {
     }
   };
 
-
   useEffect(() => {
     if (selectedOption === "Settings") {
       navigate("/settings");
     }
   }, [selectedOption, navigate]);
-  
+
   useEffect(() => {
     if (selectedOption === "LogOut") {
       lockVault();
@@ -1660,7 +1655,6 @@ export default function Dashboard() {
       toast.success("Logged Out Successfully");
     }
   }, [selectedOption]);
-
 
   return (
     <div className="flex min-h-screen bg-gray-800">
@@ -1686,11 +1680,11 @@ export default function Dashboard() {
         {/* Sidebar header */}
         <div className="flex items-center justify-between p-4 border-b border-gray-700">
           <div className="flex items-center space-x-2">
-            <FaLock className="text-blue-400" />
+            <FaLock className="text-blue-400 w-8 h-8 " />
             <h1 className="text-xl font-bold">PassVault</h1>
           </div>
           <button
-            className="p-2 hover:bg-gray-700 rounded-full transition-colors"
+            className="p-2 hover:bg-gray-700 rounded-full transition-colors hover:cursor-pointer "
             onClick={() => setIsSidebarOpen(false)}
             aria-label="Close sidebar"
           >
@@ -1777,10 +1771,10 @@ export default function Dashboard() {
                   onClick={() => setIsSidebarOpen(!isSidebarOpen)}
                   aria-label="Toggle sidebar"
                 >
-                  <FaBars className="text-gray-300" />
+                  <FaBars className="text-gray-300 h-8 w-8 hover:cursor-pointer " />
                 </button>
                 <h1
-                  className="text-2xl font-bold cursor-pointer hidden md:block"
+                  className="text-3xl font-bold cursor-pointer hidden md:block"
                   onClick={() => setSelectedOption("Home")}
                 >
                   PassVault
@@ -1798,10 +1792,10 @@ export default function Dashboard() {
                           : prev
                       );
                     } else {
-                      setSelectedOption("Home");
-                      toast.info(
-                        "Use the 'Unlock Vault' option to access your passwords"
-                      );
+                      setSelectedOption("ShowAllPassword");
+                      toast("Please Enter Your Master Password !", {
+                        icon: "ℹ️",
+                      });
                     }
                   }}
                   className={`flex items-center space-x-1 px-3 py-1.5 rounded-full transition-colors ${
@@ -1811,16 +1805,16 @@ export default function Dashboard() {
                   }`}
                 >
                   <FaLock className="text-sm" />
-                  <span className="hidden sm:inline">
+                  <span className="hidden sm:inline hover:cursor-pointer ">
                     {isUnlocked ? "Lock Vault" : "Unlock Vault"}
                   </span>
                 </button>
 
                 <button
-                  className="p-1 rounded-full hover:bg-gray-700 transition-colors"
+                  className="p-1 rounded-full hover:bg-gray-700 transition-colors hover:cursor-pointer "
                   onClick={() => setIsModalOpen(!isModalOpen)}
                 >
-                  <FaUserCircle className="text-2xl text-gray-300" />
+                  <FaUserCircle className="text-2xl h-8 w-8 text-gray-300" />
                 </button>
               </div>
             </div>
@@ -1840,9 +1834,6 @@ export default function Dashboard() {
           {renderContent()}
         </div>
       </div>
-
-
-      
     </div>
   );
 }
