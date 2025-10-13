@@ -365,16 +365,14 @@ function UserSignIn() {
     e.preventDefault(); // Prevent default form submission behavior
 
     const toastId = toast.loading("Signing in with Google...");
-    
+
     try {
-
-
       const provider = new GoogleAuthProvider();
       const result = await signInWithPopup(auth, provider);
-      
+
       const user = result.user;
       console.log("Google Sign In", user);
-      
+
       const userData = {
         name: user.displayName,
         email: user.email,
@@ -382,8 +380,8 @@ function UserSignIn() {
         profile_picture: user.photoURL,
       };
 
-   const maxRetries = 3;
-      let responseData;   
+      const maxRetries = 3;
+      let responseData;
 
       for (let attempt = 1; attempt <= maxRetries; attempt++) {
         try {
@@ -421,8 +419,6 @@ function UserSignIn() {
         }
       }
 
-
-
       // const data = await res.json();
       if (!responseData) {
         toast.error("Authentication failed. Please try again.");
@@ -431,12 +427,17 @@ function UserSignIn() {
       console.log("Data From Google Auth API: ", responseData);
 
       if (responseData.status_code === 200) {
-        toast.success(responseData.message || "Google authentication successful", {id: toastId});
+        toast.success(
+          responseData.message || "Google authentication successful",
+          { id: toastId }
+        );
         localStorage.setItem("token", responseData.token);
         loginUser(responseData.user);
         navigate("/dashboard");
       } else {
-        toast.error(responseData.message || "Authentication failed", {id: toastId});
+        toast.error(responseData.message || "Authentication failed", {
+          id: toastId,
+        });
       }
     } catch (error) {
       console.error("Error signing in with Google: ", error);
@@ -537,10 +538,18 @@ function UserSignIn() {
     <div className=" bg-gray-900 flex items-center min-h-screen w-full justify-center">
       <div className="w-full max-w-md  mx-2 lg:mx-4">
         <div className="bg-white shadow-lg rounded-lg pb-5 pt-2 mt-5">
-          <div className="px-5 pt-4">
+
+          <div className="text-3xl sm:text-5xl mb-2 font-bold text-gray-800 text-center flex items-center justify-center">
+            <a href="/" className="flex items-center">
+              {/* <img src="/01.webp" alt="PassVault Logo" className="w-19 h-20" /> */}
+              PassVault
+            </a>
+          </div>
+
+          <div className="px-5 pt-10">
             <form onSubmit={signInHandler}>
-              <div className="text-3xl sm:text-4xl mb-5 font-bold text-gray-800 text-center">
-                Sign In
+              <div className="text-3xl sm:text-xl mb-4 font-semibold text-gray-800  ">
+                Welcome back! Glad to see you, Again! <br />
               </div>
 
               <div className="mb-3">
@@ -587,7 +596,6 @@ function UserSignIn() {
                 </div>
               </div>
 
-
               {/* <div className="mb-3">
                 <label
                   htmlFor="gAuthCode"
@@ -605,7 +613,6 @@ function UserSignIn() {
                   placeholder="Check Your Authenticator App For OTP"
                 />
               </div> */}
-
 
               <div className="text-right py-3">
                 <Link

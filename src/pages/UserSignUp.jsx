@@ -572,10 +572,20 @@ function UserSignUp() {
     <div className="bg-gray-900 flex items-center min-h-screen w-full justify-center">
       <div className="w-full max-w-md mx-2 lg:mx-4">
         <div className="bg-white shadow-lg rounded-lg pb-5 pt-2 mt-5">
-          <div className="px-5 pt-4">
+
+<div className="text-3xl sm:text-5xl mb-2 font-bold text-gray-800 text-center flex items-center justify-center">
+            <a href="/" className="flex items-center">
+              {/* <img src="/01.webp" alt="PassVault Logo" className="w-19 h-20" /> */}
+              PassVault
+            </a>
+          </div>
+
+
+          <div className="px-5 pt-10">
+
             <form onSubmit={handleSignUp}>
-              <div className="text-3xl sm:text-4xl mb-5 font-bold text-gray-800 text-center">
-                Sign Up
+              <div className="text-3xl sm:text-xl mb-5 font-bold text-gray-800 ">
+                Hello! Register now to sercure your Passwords
               </div>
 
               <div className="mb-3">
