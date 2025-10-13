@@ -11,18 +11,17 @@ import {
   FaExclamationTriangle,
   FaArrowLeft,
   FaCog,
-
 } from "react-icons/fa";
 // import { toast } from "react-toastify";
 
-import { toast } from 'react-hot-toast';
+import { toast } from "react-hot-toast";
 import { useGlobalContext } from "../context/context";
 import { useMasterPassword } from "../context/MasterPasswordContext";
 
-
-
 function Settings() {
+  const serverURL = import.meta.env.VITE_APP_SERVER_URL;
   const navigate = useNavigate();
+
   const { userLoggedIn, user, logoutUser, fetchUser } = useGlobalContext();
   const [loading, setLoading] = useState(false);
   const [showConfirmDialog, setShowConfirmDialog] = useState(false);
@@ -35,16 +34,18 @@ function Settings() {
   const [resetMasterKeyLoading, setResetMasterKeyLoading] = useState(false);
   const [showMasterKeyConfirm, setShowMasterKeyConfirm] = useState(false);
 
+  // Add these new states for delete account OTP
+  const [deleteAccountOtp, setDeleteAccountOtp] = useState("");
+  const [sendingDeleteOtp, setSendingDeleteOtp] = useState(false);
+  const [deletingAccount, setDeletingAccount] = useState(false);
+
   // 2FA states
   const [otpEmail, setOtpEmail] = useState("");
   const [otp, setOtp] = useState("");
   const [sendingOTP, setSendingOTP] = useState(false);
 
-  const serverURL = import.meta.env.VITE_APP_SERVER_URL;
-
-  // user current state 
+  // user current state
   const { isSetup } = useMasterPassword();
-
 
   // Redirect if not logged in
   useEffect(() => {
@@ -56,7 +57,6 @@ function Settings() {
   }, [userLoggedIn]);
 
   // console.log(user);
-
 
   const isTokenValid = async () => {
     const token = localStorage.getItem("token");
@@ -93,19 +93,18 @@ function Settings() {
     return true;
   };
 
-    // Periodic user data refresh and initial fetch
-    useEffect(() => {
-      fetchUser();
-      isTokenValid();
-      const intervalId = setInterval(fetchUser, 1000 * 60 * 2);
-      return () => clearInterval(intervalId);
-    }, []);
-
+  // Periodic user data refresh and initial fetch
+  useEffect(() => {
+    fetchUser();
+    isTokenValid();
+    const intervalId = setInterval(fetchUser, 1000 * 60 * 2);
+    return () => clearInterval(intervalId);
+  }, []);
 
   const sendResetOTP = async (e) => {
     e.preventDefault();
 
-    if(!user.is_2FA_Enabled){
+    if (!user.is_2FA_Enabled) {
       toast.error("2FA is not enabled for this account");
       return;
     }
@@ -188,40 +187,41 @@ function Settings() {
     }
   };
 
-  const confirmAction = (action) => {
-    setDialogAction(action);
-    setShowConfirmDialog(true);
-  };
+  //TESTING PURPOSES
+  // const confirmAction = (action) => {
+  //   setDialogAction(action);
+  //   setShowConfirmDialog(true);
+  // };
 
-  const handleConfirm = async () => {
-    setShowConfirmDialog(false);
+  // const handleConfirm = async () => {
+  //   setShowConfirmDialog(false);
 
-    if (dialogAction === "delete_account") {
-      try {
-        const token = localStorage.getItem("token");
-        const res = await fetch(`${serverURL}/api/user/delete-account`, {
-          method: "DELETE",
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
+  //   if (dialogAction === "delete_account") {
+  //     try {
+  //       const token = localStorage.getItem("token");
+  //       const res = await fetch(`${serverURL}/api/user/delete-account`, {
+  //         method: "DELETE",
+  //         headers: {
+  //           Authorization: `Bearer ${token}`,
+  //         },
+  //       });
 
-        const data = await res.json();
+  //       const data = await res.json();
 
-        if (data.status_code === 200) {
-          localStorage.clear();
-          toast.success(data.message || "Account deleted successfully");
-          logoutUser();
-          navigate("/signup");
-        } else {
-          toast.error(data.message || "Failed to delete account");
-        }
-      } catch (error) {
-        console.error("Error deleting account:", error);
-        toast.error("An error occurred. Please try again later.");
-      }
-    }
-  };
+  //       if (data.status_code === 200) {
+  //         localStorage.clear();
+  //         toast.success(data.message || "Account deleted successfully");
+  //         logoutUser();
+  //         navigate("/signup");
+  //       } else {
+  //         toast.error(data.message || "Failed to delete account");
+  //       }
+  //     } catch (error) {
+  //       console.error("Error deleting account:", error);
+  //       toast.error("An error occurred. Please try again later.");
+  //     }
+  //   }
+  // };
 
   // Add this function to confirm master key reset
   const confirmMasterKeyReset = async () => {
@@ -268,8 +268,6 @@ function Settings() {
     }
   };
 
-
-
   // master key reset Confirmation PopUp
   const handleMasterKeyReset = async (e) => {
     e.preventDefault();
@@ -307,7 +305,7 @@ function Settings() {
       });
 
       const data = await res.json();
-      console.log(data)
+      console.log(data);
       if (data.status_code === 200) {
         toast.success(data.message || "OTP sent successfully");
       } else {
@@ -321,10 +319,99 @@ function Settings() {
     }
   };
 
+
+
+  // function to send delete account OTP
+  const sendDeleteAccountOTP = async () => {
+    setSendingDeleteOtp(true);
+
+    try {
+      const token = localStorage.getItem("token");
+      const res = await fetch(`${serverURL}/api/user/send-otp`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({
+          email: user.email,
+          purpose: "account_deletion",
+        }),
+      });
+
+      const data = await res.json();
+      
+      if (data.status_code === 200) {
+        toast.success(data.message || "OTP sent to your email successfully");
+      } else {
+        toast.error(data.message || "Failed to send OTP");
+      }
+    } catch (error) {
+      console.error("Error sending OTP:", error);
+      toast.error("Failed to send OTP");
+    } finally {
+      setSendingDeleteOtp(false);
+    }
+  };
+
+    const confirmAction = (action) => {
+    setDialogAction(action);
+    setShowConfirmDialog(true);
+    // Send OTP automatically when dialog opens
+    if (action === "delete_account") {
+      setTimeout(() => {
+        sendDeleteAccountOTP();
+      }, 500);
+    }
+  };
+
+ const handleConfirm = async () => {
+    if (dialogAction === "delete_account") {
+      if (!deleteAccountOtp) {
+        toast.error("Please enter the OTP sent to your email");
+        return;
+      }
+
+      setDeletingAccount(true);
+
+      try {
+        const token = localStorage.getItem("token");
+        const res = await fetch(`${serverURL}/api/user/delete-account`, {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify({
+            otp: deleteAccountOtp,
+          }),
+        });
+
+        const data = await res.json();
+
+        if (data.status_code === 200) {
+          localStorage.clear();
+          toast.success(data.message || "Account deleted successfully");
+          setShowConfirmDialog(false);
+          setDeleteAccountOtp("");
+          logoutUser();
+          navigate("/signup");
+        } else {
+          toast.error(data.message || "Failed to delete account. Please check your OTP.");
+        }
+      } catch (error) {
+        console.error("Error deleting account:", error);
+        toast.error("An error occurred. Please try again later.");
+      } finally {
+        setDeletingAccount(false);
+      }
+    }
+  };
+
+
   return (
     <div className="bg-gray-900 min-h-screen py-6">
-
-        <div className="max-w-5xl mx-auto px-4 py-8">
+      <div className="max-w-5xl mx-auto px-4 py-8">
         {/* Header Section */}
         <div className="flex flex-col sm:flex-row justify-between items-center mb-8">
           <button
@@ -334,7 +421,7 @@ function Settings() {
             <FaArrowLeft className="mr-2" />
             <span>Back to Dashboard</span>
           </button>
-          
+
           <h1 className="text-3xl font-bold text-white flex items-center">
             <FaCog className="mr-3 text-indigo-400" />
             Account Settings
@@ -395,13 +482,12 @@ function Settings() {
                       "Send OTP"
                     )}
                   </button>
-                  
                 </div>
 
                 <button
                   type="submit"
                   disabled={loading}
-                  className=" hover:cursor-pointer w-full py-3 px-4 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 shadow-md hover:shadow-lg"
+                  className=" mt-5 hover:cursor-pointer w-full py-3 px-4 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 shadow-md hover:shadow-lg"
                 >
                   {loading ? (
                     <>
@@ -432,9 +518,11 @@ function Settings() {
                   <div className="ml-3">
                     <p className="text-sm text-yellow-700">
                       <strong>Warning:</strong> Resetting your master key will{" "}
-                      <strong>permanently delete all your saved passwords</strong>.
-                      You will need to set up a new master key and re-add all your
-                      passwords.
+                      <strong>
+                        permanently delete all your saved passwords
+                      </strong>
+                      . You will need to set up a new master key and re-add all
+                      your passwords.
                     </p>
                   </div>
                 </div>
@@ -519,8 +607,8 @@ function Settings() {
                   <FaExclamationTriangle className="text-red-500 text-xl" />
                 </div>
                 <p className="text-gray-600 font-extrabold ">
-                  This action will permanently delete your account and all associated
-                  data. This cannot be undone.
+                  This action will permanently delete your account and all
+                  associated data. This cannot be undone.
                 </p>
               </div>
 
@@ -534,7 +622,6 @@ function Settings() {
           </div>
         </div>
       </div>
-
 
       {/* Add Master Key Reset Confirmation Dialog */}
       {showMasterKeyConfirm && (
@@ -571,7 +658,7 @@ function Settings() {
       )}
 
       {/* Confirmation Dialog */}
-      {showConfirmDialog && (
+      {/* {showConfirmDialog && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
           <div className="bg-white p-6 rounded-lg max-w-md w-full">
             <h3 className="text-xl font-semibold mb-4">Confirm Action</h3>
@@ -596,7 +683,91 @@ function Settings() {
             </div>
           </div>
         </div>
+      )} */}
+
+
+{showConfirmDialog && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+          <div className="bg-white p-6 rounded-lg max-w-md w-full">
+            <h3 className="text-2xl font-bold mb-4 text-red-600">Confirm Account Deletion</h3>
+            <p className="mb-4 text-gray-700">
+              {dialogAction === "delete_account"
+                ? "Are you sure you want to delete your account? This action cannot be undone."
+                : "Are you sure you want to proceed with this action?"}
+            </p>
+            
+            {dialogAction === "delete_account" && (
+              <div className="mb-6">
+                <div className="bg-yellow-50 border-l-4 border-yellow-400 p-3 mb-4 rounded-r">
+                  <p className="text-sm text-yellow-700">
+                    An OTP has been sent to your email address: <strong>{user?.email}</strong>
+                  </p>
+                </div>
+                
+                <div className="space-y-4">
+                  <div>
+                    <label className="block text-gray-700 font-medium mb-2">
+                      Enter OTP
+                    </label>
+                    <input
+                      type="text"
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-red-500"
+                      value={deleteAccountOtp}
+                      onChange={(e) => setDeleteAccountOtp(e.target.value)}
+                      placeholder="Enter 6-digit OTP"
+                      maxLength={6}
+                    />
+                  </div>
+                  
+                  <button
+                    type="button"
+                    onClick={sendDeleteAccountOTP}
+                    disabled={sendingDeleteOtp}
+                    className="hover:cursor-pointer w-full px-4 py-2 border border-gray-300 bg-gray-50 rounded-lg hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-red-500 transition-colors text-sm"
+                  >
+                    {sendingDeleteOtp ? (
+                      <>
+                        <FaSpinner className="inline mr-2 animate-spin" />
+                        Sending OTP...
+                      </>
+                    ) : (
+                      "Resend OTP"
+                    )}
+                  </button>
+                </div>
+              </div>
+            )}
+            
+            <div className="flex justify-end gap-3">
+              <button
+                onClick={() => {
+                  setShowConfirmDialog(false);
+                  setDeleteAccountOtp("");
+                }}
+                disabled={deletingAccount}
+                className="hover:cursor-pointer px-4 py-2 text-gray-700 border border-gray-300 rounded-md hover:bg-gray-100"
+              >
+                Cancel
+              </button>
+              <button
+                onClick={handleConfirm}
+                disabled={deletingAccount}
+                className="hover:cursor-pointer px-4 py-2 bg-red-600 text-white rounded-md hover:bg-red-700 disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                {deletingAccount ? (
+                  <>
+                    <FaSpinner className="inline mr-2 animate-spin" />
+                    Deleting...
+                  </>
+                ) : (
+                  "Confirm Delete"
+                )}
+              </button>
+            </div>
+          </div>
+        </div>
       )}
+
     </div>
   );
 }
