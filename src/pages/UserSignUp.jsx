@@ -584,7 +584,7 @@ function UserSignUp() {
           <div className="px-5 pt-10">
 
             <form onSubmit={handleSignUp}>
-              <div className="text-3xl sm:text-xl mb-5 font-bold text-gray-800 ">
+              <div className="text-3xl sm:text-xl mb-5 font-semibold text-gray-800 ">
                 Hello! Register now to sercure your Passwords
               </div>
 
