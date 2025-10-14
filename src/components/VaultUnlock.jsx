@@ -1,6 +1,7 @@
 import { useState } from "react";
 // import { toast } from "react-toastify";
 
+import { useLoadingBar } from "react-top-loading-bar";
 
 import { toast } from 'react-hot-toast';
 import { useMasterPassword } from "../context/MasterPasswordContext";
@@ -10,6 +11,10 @@ const VaultUnlock = () => {
   const [password, setPassword] = useState("");
   const {verifyMasterPassword } = useMasterPassword();
   const [Loading , setIsLoading] = useState(false);
+
+  // Loading bar
+    const { start, complete } = useLoadingBar({ color: "blue", height: 3 });
+
 
   const { 
     isSetup, 
@@ -21,7 +26,8 @@ const VaultUnlock = () => {
   const handleUnlock = async () => {
     
     setIsLoading(true);
-
+    start();
+    
     if (!password) {
       toast.error("Please enter your master password");
       return;
@@ -43,12 +49,14 @@ const VaultUnlock = () => {
         
       } else {
         toast.error("Incorrect master password");
+        setPassword("");
       }
     } catch (error) {
       console.error("Error unlocking vault:", error);
       toast.error("Failed to unlock vault");
     } finally {
       setIsLoading(false);
+        complete();
     }
 
 

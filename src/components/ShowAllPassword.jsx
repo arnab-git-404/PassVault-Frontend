@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { useGlobalContext } from "../context/context";
 import { useMasterPassword } from "../context/MasterPasswordContext";
 // import { toast } from "react-toastify";
+import { useLoadingBar } from "react-top-loading-bar";
 
 import { toast } from 'react-hot-toast';
 
@@ -42,6 +43,10 @@ const { masterKey, masterSalt   } = useMasterPassword();
   const [deleteId, setDeleteId] = useState(null);
   const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
 
+  // Loading bar
+    const { start, complete } = useLoadingBar({ color: "blue", height: 3 });
+
+
   // const serverURL = "http://127.0.0.1:8000";
   const serverURL = import.meta.env.VITE_APP_SERVER_URL;
   const token = localStorage.getItem("token");
@@ -64,7 +69,7 @@ const { masterKey, masterSalt   } = useMasterPassword();
     if (!user?.email){
       return;
     }
-
+    start();
     setLoading(true);
     try {
 
@@ -137,6 +142,7 @@ const { masterKey, masterSalt   } = useMasterPassword();
           setSavedPasswords(decryptedData);
           setLoading(false);
         }
+        complete();
       }
     } catch (error) {
       console.error("Failed to fetch passwords", error);
