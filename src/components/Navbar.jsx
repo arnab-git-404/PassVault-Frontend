@@ -245,22 +245,24 @@ function Navbar() {
   return (
     // <div className="sticky top-0 z-50 backdrop-blur-md  ">
     <header
-      className={`w-full flex items-center justify-between px-4 sm:px-6 md:px-14 py-4 md:py-6 z-30 fixed top-0 left-0 right-0 transition-all duration-300 ${"bg-transparent"}`}
+      className={`flex items-center justify-between px-4 sm:px-6 md:px-14 py-4 md:py-6 z-30 fixed top-0 left-0 right-0 transition-all duration-300 ${"bg-transparent"}`}
     >
-      <nav className="mx-6 md:mx-8 lg:mx-auto lg:w-5xl xl:w-6xl border-2 rounded-full shadow-lg bg-opacity-50 backdrop-blur-sm">
+      <nav className="md:mx-8 mx-auto w-4xl md:w-5xl lg:mx-auto lg:w-5xl xl:w-6xl border-2 rounded-full shadow-lg bg-opacity-50 backdrop-blur-sm  ">
+
         <div className="px-4 md:px-6 py-2">
           <div className="flex justify-between items-center">
             {/* Left Section */}
             <div className="flex items-center space-x-3 md:space-x-4">
-              <button
-                className="p-2 hover:bg-gray-700 rounded-md transition-colors"
+              {/* <button 
+                // className="p-2 hover:bg-gray-700 rounded-md transition-colors"
                 // onClick={() => setIsSidebarOpen(!isSidebarOpen)}
-                aria-label="Toggle sidebar"
-              >
+                // aria-label="Toggle sidebar"
+              // >
                 {/* <FaBars className=" h-5 w-5 md:h-6 md:w-6 hover:cursor-pointer" /> */}
-              </button>
+              {/* </button>  */}
+
               <h1
-                className="text-xl md:text-2xl lg:text-2xl font-bold cursor-pointer hidden md:block"
+                className="text-xl md:text-2xl lg:text-2xl font-bold cursor-pointer "
                 onClick={() => navigate("/dashboard")}
               >
                 PassVault
