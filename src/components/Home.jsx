@@ -427,18 +427,18 @@ export default function Home({ isSetup, isUnlocked, onSetupClick }) {
                 ></div>
 
                 {/* Connected process flow line */}
-                <div className="absolute h-1 bg-gray-700 left-[10%] right-[10%] top-1/2 transform -translate-y-1/2 hidden md:block"></div>
+                <div className="absolute h-1 bg-gray-700 left-[10%] right-[10%] top-1/2 transform -translate-y-1/2 hidden md:block lg:hidden"></div>
 
                 {/* Step 1: You create a password */}
                 <div
-                  className={` border-black relative text-center p-4 ${
+                  className={`  border-2 relative  text-center p-4 ${
                     animationStep === 0
                       ? "bg-blue-900 bg-opacity-20"
                       : ""
                   } rounded-lg w-full md:w-1/5 mb-4 md:mb-0 z-10 transition-colors duration-300`}
                 >
                   <div
-                    className={`rounded-full p-3 inline-flex justify-center items-center mb-2 bg-opacity-75 ${
+                    className={`rounded-full p-3 inline-flex justify-center items-center mb-2 bg-opacity-75 border-2 ${
                       animationStep === 0 ? "bg-blue-900" : "bg-gray-900"
                     }`}
                   >
@@ -460,10 +460,10 @@ export default function Home({ isSetup, isUnlocked, onSetupClick }) {
 
                 {/* Step 2: Encrypted with master key */}
                 <div
-                  className={`relative text-center p-4 ${
+                  className={` border-2 relative text-center p-4 ${
                     animationStep === 1
                       ? "bg-blue-900 bg-opacity-20"
-                      : "bg-gray-800"
+                      : ""
                   } rounded-lg w-full md:w-1/5 mb-4 md:mb-0 z-10 transition-colors duration-300`}
                 >
                   <div
@@ -489,10 +489,10 @@ export default function Home({ isSetup, isUnlocked, onSetupClick }) {
 
                 {/* Step 3: Stored encrypted */}
                 <div
-                  className={`relative text-center p-4 ${
+                  className={` border-2 relative text-center p-4 ${
                     animationStep === 2
                       ? "bg-blue-900 bg-opacity-20"
-                      : "bg-gray-800"
+                      : ""
                   } rounded-lg w-full md:w-1/5 mb-4 md:mb-0 z-10 transition-colors duration-300`}
                 >
                   <div
@@ -518,10 +518,10 @@ export default function Home({ isSetup, isUnlocked, onSetupClick }) {
 
                 {/* Step 4: Decryption when accessed */}
                 <div
-                  className={`relative text-center p-4 ${
+                  className={`border-2 relative text-center p-4 ${
                     animationStep === 3
                       ? "bg-blue-900 bg-opacity-20"
-                      : "bg-gray-800"
+                      : ""
                   } rounded-lg w-full md:w-1/5 z-10 transition-colors duration-300`}
                 >
                   <div
@@ -1084,8 +1084,6 @@ export default function Home({ isSetup, isUnlocked, onSetupClick }) {
         </div>
       </div>
 
-
-      
     </div>
   );
 }
