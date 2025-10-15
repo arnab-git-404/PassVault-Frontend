@@ -58,24 +58,11 @@ export default function PlaceholderPage() {
   const currentPage = pageInfo[pageType] || pageInfo.default;
   
   return (
-    <div className="bg-gray-900 min-h-screen flex flex-col text-white">
-      {/* Header */}
-      <header className="bg-gray-800 p-4 border-b border-gray-700 flex justify-between items-center">
-        <button 
-          onClick={() => navigate(-1)} 
-          className="flex items-center text-blue-400 hover:text-blue-300 transition-colors"
-        >
-          <FaArrowLeft className="mr-2" /> Back to home
-        </button>
-        
-        <div className="text-gray-400 text-sm">
-          PassVault • {currentPage.title}
-        </div>
-      </header>
+    <div className=" min-h-screen flex flex-col">
       
       {/* Main content */}
-      <div className="flex-1 flex flex-col items-center justify-center p-6">
-        <div className="max-w-2xl w-full bg-gray-800 rounded-xl p-8 shadow-lg">
+      <div className="flex-1 flex flex-col items-center justify-center p-6 mt-10">
+        <div className="max-w-2xl w-full border-2 rounded-xl p-8 shadow-lg">
           <div className="flex justify-center mb-6">
             <div className="p-4 bg-blue-900 bg-opacity-30 rounded-full">
               <FaTools className="text-blue-400 text-5xl animate-pulse" />
@@ -83,7 +70,7 @@ export default function PlaceholderPage() {
           </div>
           
           <h1 className="text-3xl font-bold text-center mb-4">{currentPage.title}</h1>
-          <p className="text-xl text-center text-gray-300 mb-8">{currentPage.description}</p>
+          <p className="text-xl text-center  mb-8">{currentPage.description}</p>
           
           <div className="bg-gray-700 bg-opacity-50 p-6 rounded-lg mb-8 border-l-4 border-blue-500">
             <div className="flex items-start">
@@ -103,7 +90,7 @@ export default function PlaceholderPage() {
           <div className="text-center">
             <Link 
               to="/" 
-              className="inline-block bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-medium transition-colors"
+              className="inline-block bg-blue-600 hover:bg-blue-700 px-6 py-3 rounded-lg font-medium transition-colors"
             >
               Return to Homepage
             </Link>
