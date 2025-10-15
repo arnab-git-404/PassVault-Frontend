@@ -410,7 +410,7 @@ function Settings() {
 
 
   return (
-    <div className="bg-gray-900 min-h-screen py-6">
+    <div className="min-h-screen py-6">
       <div className="max-w-5xl mx-auto px-4 py-8">
         {/* Header Section */}
         <div className="flex flex-col sm:flex-row justify-between items-center mb-8">
@@ -431,7 +431,7 @@ function Settings() {
         {/* Settings Card Container */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           {/* Two-Factor Authentication Reset */}
-          <div className="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-100">
+          <div className=" rounded-xl shadow-lg overflow-hidden border border-gray-100">
             <div className="bg-indigo-600 px-6 py-4">
               <h2 className="text-xl font-semibold text-white flex items-center">
                 <FaShieldAlt className="mr-2" /> Reset Two-Factor Authentication
@@ -440,7 +440,7 @@ function Settings() {
             <div className="p-6">
               <form onSubmit={resetTwoFactorAuth} className="space-y-4">
                 <div>
-                  <label className="block text-gray-700 font-medium mb-2">
+                  <label className="block font-medium mb-2">
                     Email Address
                   </label>
                   <input
@@ -455,7 +455,7 @@ function Settings() {
 
                 <div className="flex gap-3 items-end">
                   <div className="flex-1">
-                    <label className="block text-gray-700 font-medium mb-2">
+                    <label className="block font-medium mb-2">
                       OTP
                     </label>
                     <input
@@ -471,7 +471,7 @@ function Settings() {
                     type="button"
                     onClick={sendResetOTP}
                     disabled={sendingOTP}
-                    className="hover:cursor-pointer px-4 py-3 h-[46px] border border-gray-300 bg-gray-50 rounded-lg hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-colors"
+                    className="hover:cursor-pointer px-4 py-3 h-[46px] border border-gray-300  hover:bg-black/50 rounded-lg  focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-colors"
                   >
                     {sendingOTP ? (
                       <>
@@ -503,7 +503,7 @@ function Settings() {
           </div>
 
           {/* Master Key Reset */}
-          <div className="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-100">
+          <div className=" rounded-xl shadow-lg overflow-hidden border border-gray-100">
             <div className="bg-indigo-600 px-6 py-4">
               <h2 className="text-xl font-semibold text-white flex items-center">
                 <FaKey className="mr-2" /> Reset Master Key
@@ -531,7 +531,7 @@ function Settings() {
               <form onSubmit={handleMasterKeyReset} className="space-y-4">
                 <div className="flex gap-3 items-end">
                   <div className="flex-1">
-                    <label className="block text-gray-700 font-medium mb-2">
+                    <label className="block font-medium mb-2">
                       Email Verification OTP
                     </label>
                     <input
@@ -547,7 +547,7 @@ function Settings() {
                     type="button"
                     onClick={sendMasterKeyResetOTP}
                     disabled={sendingMasterKeyOtp}
-                    className="hover:cursor-pointer px-4 py-3 h-[46px] border border-gray-300 bg-gray-50 rounded-lg hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-colors"
+                    className="hover:cursor-pointer px-4 py-3 h-[46px] border border-gray-300  rounded-lg hover:bg-black/50 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-colors"
                   >
                     {sendingMasterKeyOtp ? (
                       <>
@@ -595,10 +595,10 @@ function Settings() {
           </div>
 
           {/* Delete Account - Full Width */}
-          <div className="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-100 lg:col-span-2">
+          <div className=" rounded-xl shadow-lg overflow-hidden border border-gray-100 lg:col-span-2">
             <div className="bg-red-600 px-6 py-4">
-              <h2 className="text-xl font-semibold text-white flex items-center">
-                <FaTrash className="mr-2" /> Delete Account
+              <h2 className="text-xl font-semibold  flex items-center">
+                <FaTrash className="mr-2" /> Delete Account 
               </h2>
             </div>
             <div className="p-6">
@@ -606,7 +606,7 @@ function Settings() {
                 <div className="p-3 bg-red-100 rounded-full">
                   <FaExclamationTriangle className="text-red-500 text-xl" />
                 </div>
-                <p className="text-gray-600 font-extrabold ">
+                <p className=" font-extrabold ">
                   This action will permanently delete your account and all
                   associated data. This cannot be undone.
                 </p>
@@ -687,10 +687,10 @@ function Settings() {
 
 
 {showConfirmDialog && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-          <div className="bg-white p-6 rounded-lg max-w-md w-full">
-            <h3 className="text-2xl font-bold mb-4 text-red-600">Confirm Account Deletion</h3>
-            <p className="mb-4 text-gray-700">
+        <div className="fixed inset-0 flex items-center justify-center z-50 bg-[#020618] bg-opacity/10">
+          <div className=" bg-[#020618] p-6 rounded-lg max-w-md w-full border-2 border-white">
+            <h3 className="text-2xl font-bold mb-4 ">Confirm Account Deletion</h3>
+            <p className="mb-4 ">
               {dialogAction === "delete_account"
                 ? "Are you sure you want to delete your account? This action cannot be undone."
                 : "Are you sure you want to proceed with this action?"}
@@ -698,7 +698,7 @@ function Settings() {
             
             {dialogAction === "delete_account" && (
               <div className="mb-6">
-                <div className="bg-yellow-50 border-l-4 border-yellow-400 p-3 mb-4 rounded-r">
+                <div className=" border-l-4 border-yellow-400 p-3 mb-4 rounded-r">
                   <p className="text-sm text-yellow-700">
                     An OTP has been sent to your email address: <strong>{user?.email}</strong>
                   </p>
@@ -706,7 +706,7 @@ function Settings() {
                 
                 <div className="space-y-4">
                   <div>
-                    <label className="block text-gray-700 font-medium mb-2">
+                    <label className="block font-medium mb-2">
                       Enter OTP
                     </label>
                     <input
@@ -723,7 +723,7 @@ function Settings() {
                     type="button"
                     onClick={sendDeleteAccountOTP}
                     disabled={sendingDeleteOtp}
-                    className="hover:cursor-pointer w-full px-4 py-2 border border-gray-300 bg-gray-50 rounded-lg hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-red-500 transition-colors text-sm"
+                    className="hover:cursor-pointer w-full px-4 py-2 border border-gray-300  rounded-lg  focus:outline-none focus:ring-2 focus:ring-red-500 transition-colors text-sm"
                   >
                     {sendingDeleteOtp ? (
                       <>

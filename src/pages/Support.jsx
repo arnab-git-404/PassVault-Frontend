@@ -26,6 +26,10 @@ import {
 } from "lucide-react";
 
 export default function SupportPanel() {
+
+
+
+
   const [activeView, setActiveView] = useState("home");
   const [formData, setFormData] = useState({
     name: "",

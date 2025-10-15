@@ -535,27 +535,27 @@ function UserSignIn() {
   };
 
   return (
-    <div className=" bg-gray-900 flex items-center min-h-screen w-full justify-center">
-      <div className="w-full max-w-md  mx-2 lg:mx-4">
-        <div className="bg-white shadow-lg rounded-lg pb-5 pt-2 mt-5">
+    <div className=" flex items-center min-h-screen w-full justify-center mt-10">
+      <div className="w-full max-w-md border-2 rounded-2xl mx-2 lg:mx-4 shadow-2xl ">
+        <div className=" shadow-lg rounded-lg pb-5 mt-5">
 
-          <div className="text-3xl sm:text-5xl mb-2 font-bold text-gray-800 text-center flex items-center justify-center">
-            <a href="/" className="flex items-center">
+          <div className="text-3xl sm:text-5xl mb-2 font-bold text-center flex items-center justify-center">
+            <Link to="/" className="flex items-center">
               {/* <img src="/01.webp" alt="PassVault Logo" className="w-19 h-20" /> */}
               PassVault
-            </a>
+            </Link>
           </div>
 
           <div className="px-5 pt-10">
             <form onSubmit={signInHandler}>
-              <div className="text-3xl sm:text-xl mb-4 font-semibold text-gray-800  ">
+              <div className="text-3xl sm:text-xl mb-4 font-semibold ">
                 Welcome back! Glad to see you, Again! <br />
               </div>
 
               <div className="mb-3">
                 <label
                   htmlFor="email"
-                  className="block text-lg font-medium text-gray-700"
+                  className="block text-lg font-medium "
                 >
                   Email
                 </label>
@@ -573,7 +573,7 @@ function UserSignIn() {
               <div className="mb-3 relative">
                 <label
                   htmlFor="password"
-                  className="block text-lg font-medium text-gray-700"
+                  className="block text-lg font-medium"
                 >
                   Password
                 </label>
@@ -617,7 +617,7 @@ function UserSignIn() {
               <div className="text-right py-3">
                 <Link
                   to={"/forget-password"}
-                  className=" hover:underline text-lg hover:cursor-pointer text-indigo-600 hover:text-red-500 "
+                  className=" hover:underline text-lg hover:cursor-pointer  hover:text-red-500 "
                 >
                   Forgot password?
                 </Link>
@@ -642,7 +642,7 @@ function UserSignIn() {
 
             <div className="flex flex-col items-center hover:cursor-pointer ">
               <p className="my-1">
-                <span className="text-gray-600">or</span>
+                <span className="">or</span>
               </p>
 
               <button
@@ -658,7 +658,7 @@ function UserSignIn() {
                 Don't have an account? &nbsp;&nbsp; | &nbsp;&nbsp;
                 <Link
                   to={"/signup"}
-                  className="font-bold text-indigo-600 hover:text-indigo-500"
+                  className="font-bold hover:text-indigo-500"
                 >
                   Sign Up
                 </Link>

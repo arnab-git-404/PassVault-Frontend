@@ -120,7 +120,7 @@
 
 
   --background: #020618;
-  --foreground: oklch(0.984 0.003 247.858);
+  --foreground: #f8fafc;
   --card: oklch(0.14 0.04 259.21);
   --card-foreground: oklch(0.984 0.003 247.858);
   --popover: oklch(0.208 0.042 265.755);
@@ -226,5 +226,6 @@
   body {
     @apply bg-background text-foreground;
   }
+  
 }
 

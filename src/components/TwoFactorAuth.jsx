@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { useGlobalContext } from "../context/context";
+import  { Button } from "@/components/ui/button";
 // import { toast } from "react-toastify";
 
 import { useNavigate } from "react-router-dom";
@@ -87,7 +88,7 @@ export default function TwoFactorAuth() {
 
   return (
     <div className="max-w-md mx-auto p-4">
-      <div className="bg-gray-900 text-white p-6 rounded-lg shadow-lg">
+      <div className=" p-6 rounded-lg shadow-lg border-2">
         <h2 className="text-2xl font-bold mb-4 text-center">
           Two-Factor Authentication
         </h2>
@@ -123,16 +124,16 @@ export default function TwoFactorAuth() {
           <>
             {!qrCode && !loading && (
               <div className="text-center">
-                <p className="mb-4 text-gray-300">
+                <p className="mb-4 ">
                   Enable two-factor authentication to add an extra layer of
                   security to your account.
                 </p>
-                <button
-                  className="hover:cursor-pointer bg-blue-600 hover:bg-blue-700 transition-colors px-6 py-2 rounded mb-4 font-medium"
+                <Button
+                  className="hover:cursor-pointer  hover:bg-blue-700 transition-colors px-6 py-2 rounded mb-4 font-medium"
                   onClick={enable2FA}
                 >
                   Enable 2FA
-                </button>
+                </Button>
               </div>
             )}
 
@@ -153,12 +154,12 @@ export default function TwoFactorAuth() {
                   />
                 </div>
 
-                <div className="w-full space-y-4">
-                  <div className="bg-gray-800 p-4 rounded-lg">
+                <div className="w-full space-y-4 border-2 rounded-lg p-4 shadow-lg">
+                  <div className=" p-4 rounded-lg">
                     <h3 className="font-medium text-lg mb-2">
-                      Setup Instructions:
+                      Setup Instructions :
                     </h3>
-                    <ol className="list-decimal pl-5 space-y-1 text-gray-300">
+                    <ol className="list-decimal pl-5 space-y-1 ">
                       <li>Install Google Authenticator or another TOTP app</li>
                       <li>Scan the QR code with the app</li>
                       <li>Enter the 6-digit code from the app below</li>
@@ -169,7 +170,7 @@ export default function TwoFactorAuth() {
                     <input
                       type="text"
                       placeholder="Enter 6-digit verification code"
-                      className="p-3 text-white rounded w-full bg-gray-800 border border-gray-600 focus:border-blue-500 focus:outline-none text-center text-lg tracking-wider"
+                      className="p-3 rounded w-full border border-gray-600 focus:border-blue-500 focus:outline-none text-center text-lg tracking-wider"
                       value={verificationCode}
                       onChange={(e) =>
                         setVerificationCode(

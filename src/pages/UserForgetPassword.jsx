@@ -255,20 +255,20 @@ function UserForgetPassword() {
   };
 
   return (
-    <div className="bg-gray-900 flex items-center min-h-screen w-full justify-center">
-      <div className="w-full max-w-md mx-2 lg:mx-4">
-        <div className="bg-white shadow-lg rounded-lg pb-5 pt-2 mt-5">
+    <div className="flex items-center min-h-screen w-full justify-center">
+      <div className="w-full max-w-md mx-2 lg:mx-4 border-2 rounded-2xl shadow-2xl ">
+        <div className="shadow-lg rounded-lg pb-5 pt-2 mt-5 ">
           <div className="px-5 pt-4">
             {otpVerified ? (
               <form onSubmit={submitNewPassword}>
-                <div className="text-3xl sm:text-4xl mb-5 font-medium text-gray-800 text-center">
+                <div className="text-3xl sm:text-4xl mb-5 font-medium text-center">
                   Enter New Password
                 </div>
 
                 <div className="mb-3 relative">
                   <label
                     htmlFor="password"
-                    className="block text-lg font-medium text-gray-700"
+                    className="block text-lg font-medium "
                   >
                     Password
                   </label>
@@ -292,7 +292,7 @@ function UserForgetPassword() {
                 <div className="mb-3 relative">
                   <label
                     htmlFor="cnfPassword"
-                    className="block text-lg font-medium text-gray-700"
+                    className="block text-lg font-medium "
                   >
                     Confirm Password
                   </label>
@@ -325,14 +325,14 @@ function UserForgetPassword() {
               </form>
             ) : (
               <form onSubmit={submitOtpHandler}>
-                <div className="text-3xl sm:text-4xl mb-5 font-medium text-gray-800 text-center">
+                <div className="text-3xl sm:text-4xl mb-5 font-medium  text-center">
                   Forget Password
                 </div>
 
                 <div className="mb-3">
                   <label
                     htmlFor="email"
-                    className="block text-lg font-medium text-gray-700"
+                    className="block text-lg font-medium "
                   >
                     Email
                   </label>
@@ -351,7 +351,7 @@ function UserForgetPassword() {
                   <div>
                     <label
                       htmlFor="otp"
-                      className="block text-lg font-medium text-gray-700"
+                      className="block text-lg font-medium "
                     >
                       Enter OTP
                     </label>
@@ -363,7 +363,7 @@ function UserForgetPassword() {
                       name="otp"
                       value={otp}
                       onChange={(e) => setOTP(e.target.value)}
-                      placeholder="Check Your Email For OTP"
+                      placeholder="OTP"
                     />
                   </div>
 
@@ -371,7 +371,7 @@ function UserForgetPassword() {
                     type="button"
                     onClick={sendOTP}
                     disabled={sendingOTP}
-                    className="mt-5 block px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm hover:bg-gray-100"
+                    className="mt-5 block px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 hover:border-indigo-500 sm:text-sm hover:cursor-pointer"
                   >
                     {sendingOTP ? (
                       <>

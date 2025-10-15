@@ -17,7 +17,6 @@
 
 // // Firebase config (replace with your actual config)
 
-
 //   if (userLoggedIn) {
 //     navigate("/dashboard");
 //   }
@@ -167,14 +166,14 @@
 //         <div className="bg-white shadow-lg rounded-lg pb-5 pt-2 mt-5">
 //           <div className="px-5 pt-4">
 //             <form onSubmit={handleSignUp}>
-//               <div className="text-3xl sm:text-4xl mb-5 font-bold text-gray-800 text-center">
+//               <div className="text-3xl sm:text-4xl mb-5 font-bold  text-center">
 //                 Sign Up
 //               </div>
 
 //               <div className="mb-3">
 //                 <label
 //                   htmlFor="name"
-//                   className="block text-lg font-medium text-gray-700"
+//                   className="block text-lg font-medium "
 //                 >
 //                   Name
 //                 </label>
@@ -192,7 +191,7 @@
 //               <div className="mb-3">
 //                 <label
 //                   htmlFor="email"
-//                   className="block text-lg font-medium text-gray-700"
+//                   className="block text-lg font-medium "
 //                 >
 //                   Email
 //                 </label>
@@ -210,7 +209,7 @@
 //               <div className="mb-3 relative ">
 //                 <label
 //                   htmlFor="password"
-//                   className="block text-lg font-medium text-gray-700"
+//                   className="block text-lg font-medium "
 //                 >
 //                   Password
 //                 </label>
@@ -235,7 +234,7 @@
 //                 <div>
 //                   <label
 //                     htmlFor="password"
-//                     className="block text-lg font-medium text-gray-700"
+//                     className="block text-lg font-medium "
 //                   >
 //                     Enter Otp
 //                   </label>
@@ -354,13 +353,9 @@ function UserSignUp() {
   };
 
   const handleGoogleSignIn = async () => {
-
     const toastId = toast.loading("Signing Up with Google...");
-    
 
     try {
-
-
       // Initialize Google Auth Provider
       const provider = new GoogleAuthProvider();
       const result = await signInWithPopup(auth, provider);
@@ -379,60 +374,63 @@ function UserSignUp() {
       };
 
       const maxRetries = 3;
-      let responseData; 
+      let responseData;
 
-        for (let attempt = 1; attempt <= maxRetries; attempt++) {
-          try {
-            // Call backend API
-            const res = await fetch(`${serverURL}/api/google/google-auth`, {
-              method: "POST",
-              headers: {
-                "Content-Type": "application/json",
-              },
-              body: JSON.stringify(userData),
-            });
-            if (res.status === 200) {
-              responseData = await res.json();
-              break; // Success, exit the loop
-            }
-            // If it's a server error and we have retries left, wait and continue
-            if (res.status >= 500 && attempt < maxRetries) {
-              console.warn(`Attempt ${attempt} failed. Retrying...`);
-              await new Promise((resolve) => setTimeout(resolve, 1500)); // Wait 1.5 seconds
-              continue;
-            }
-  
-            // For other errors (like 4xx) or last attempt, get data and break
+      for (let attempt = 1; attempt <= maxRetries; attempt++) {
+        try {
+          // Call backend API
+          const res = await fetch(`${serverURL}/api/google/google-auth`, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(userData),
+          });
+          if (res.status === 200) {
             responseData = await res.json();
-            break;
-          } catch (networkError) {
-            if (attempt < maxRetries) {
-              console.warn(
-                `Attempt ${attempt} failed with network error. Retrying...`
-              );
-              await new Promise((resolve) => setTimeout(resolve, 1500));
-            } else {
-              throw networkError; // Throw error after last attempt
-            }
+            break; // Success, exit the loop
+          }
+          // If it's a server error and we have retries left, wait and continue
+          if (res.status >= 500 && attempt < maxRetries) {
+            console.warn(`Attempt ${attempt} failed. Retrying...`);
+            await new Promise((resolve) => setTimeout(resolve, 1500)); // Wait 1.5 seconds
+            continue;
+          }
+
+          // For other errors (like 4xx) or last attempt, get data and break
+          responseData = await res.json();
+          break;
+        } catch (networkError) {
+          if (attempt < maxRetries) {
+            console.warn(
+              `Attempt ${attempt} failed with network error. Retrying...`
+            );
+            await new Promise((resolve) => setTimeout(resolve, 1500));
+          } else {
+            throw networkError; // Throw error after last attempt
           }
         }
-  
-  
-  
-        // const data = await res.json();
-        if (!responseData) {
-          toast.error("Authentication failed. Please try again.");
-          return;
-        }
-        console.log("Data From Google Auth API: ", responseData);
+      }
+
+      // const data = await res.json();
+      if (!responseData) {
+        toast.error("Authentication failed. Please try again.");
+        return;
+      }
+      console.log("Data From Google Auth API: ", responseData);
 
       if (responseData.status_code === 200) {
-        toast.success(responseData.message || "Google authentication successful", {id: toastId});
+        toast.success(
+          responseData.message || "Google authentication successful",
+          { id: toastId }
+        );
         localStorage.setItem("token", responseData.token);
         loginUser(responseData.user);
         navigate("/dashboard");
       } else {
-        toast.error(responseData.message || "Authentication failed", {id: toastId});
+        toast.error(responseData.message || "Authentication failed", {
+          id: toastId,
+        });
       }
     } catch (error) {
       console.error("Error signing in with Google: ", error);
@@ -569,29 +567,27 @@ function UserSignUp() {
   };
 
   return (
-    <div className="bg-gray-900 flex items-center min-h-screen w-full justify-center">
-      <div className="w-full max-w-md mx-2 lg:mx-4">
-        <div className="bg-white shadow-lg rounded-lg pb-5 pt-2 mt-5">
+    <div className=" flex items-center min-h-screen w-full justify-center mt-30">
+      <div className="w-full max-w-md mx-2 lg:mx-4 border-2 rounded-2xl shadow-2xl">
 
-<div className="text-3xl sm:text-5xl mb-2 font-bold text-gray-800 text-center flex items-center justify-center">
-            <a href="/" className="flex items-center">
+        <div className=" shadow-lg rounded-lg pb-5 mt-5 ">
+          <div className="text-3xl sm:text-5xl mb-2 font-bold  text-center flex items-center justify-center">
+            <Link to="/" className="flex items-center">
               {/* <img src="/01.webp" alt="PassVault Logo" className="w-19 h-20" /> */}
               PassVault
-            </a>
+            </Link>
           </div>
 
-
           <div className="px-5 pt-10">
-
             <form onSubmit={handleSignUp}>
-              <div className="text-3xl sm:text-xl mb-5 font-semibold text-gray-800 ">
+              <div className="text-3xl sm:text-xl mb-5 font-semibold  ">
                 Hello! Register now to sercure your Passwords
               </div>
 
               <div className="mb-3">
                 <label
                   htmlFor="name"
-                  className="block text-lg font-medium text-gray-700"
+                  className="block text-lg font-medium "
                 >
                   Name
                 </label>
@@ -609,7 +605,7 @@ function UserSignUp() {
               <div className="mb-3">
                 <label
                   htmlFor="email"
-                  className="block text-lg font-medium text-gray-700"
+                  className="block text-lg font-medium "
                 >
                   Email
                 </label>
@@ -627,7 +623,7 @@ function UserSignUp() {
               <div className="mb-3 relative">
                 <label
                   htmlFor="password"
-                  className="block text-lg font-medium text-gray-700"
+                  className="block text-lg font-medium "
                 >
                   Password
                 </label>
@@ -652,7 +648,7 @@ function UserSignUp() {
                 <div>
                   <label
                     htmlFor="otp"
-                    className="block text-lg font-medium text-gray-700"
+                    className="block text-lg font-medium "
                   >
                     Enter OTP
                   </label>
@@ -691,7 +687,7 @@ function UserSignUp() {
                   )}
                 </button>
               </div>
-              
+
               <div className="flex justify-center hover:cursor-pointer">
                 <button
                   className=" hover:cursor-pointer w-full py-2 px-4 border border-transparent rounded-md shadow-sm text-lg font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
