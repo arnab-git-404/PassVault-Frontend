@@ -116,8 +116,8 @@ export default function Home({ isSetup, isUnlocked, onSetupClick }) {
         <div className="inline-block p-2 bg-blue-900 bg-opacity-30 rounded-lg mb-4">
           <FaShieldAlt className="text-blue-200 text-4xl inline-block animate-pulse" />
         </div>
-        <h1 className="text-5xl font-bold mb-3 text-white">PassVault</h1>
-        <p className="text-xl text-gray-300 mb-6">
+        <h1 className="text-5xl font-bold mb-3 ">PassVault</h1>
+        <p className="text-xl mb-6">
           Your secure, encrypted password manager
         </p>
 
@@ -142,7 +142,7 @@ export default function Home({ isSetup, isUnlocked, onSetupClick }) {
       </div>
 
       {/* Security Notes - MOVED TO TOP for prominence */}
-      <div className="bg-gradient-to-r from-gray-900 to-gray-800 rounded-xl p-6 mb-8 border-l-4 border-blue-600">
+      <div className=" rounded-xl p-6 mb-8 border-l-4 border-blue-600">
         <h3 className="text-xl font-bold mb-4 flex items-center">
           <FaExclamationCircle className="text-blue-400 mr-3" />
           Security Notes
@@ -173,7 +173,7 @@ export default function Home({ isSetup, isUnlocked, onSetupClick }) {
       </div>
 
       {/* Visual Process Flow with Animation - IMPROVED */}
-      <div className="bg-gray-900 rounded-xl p-6 mb-10 relative overflow-hidden">
+      <div className=" border-2 rounded-xl p-6 mb-10 relative overflow-hidden">
         <h2 className="text-2xl font-bold mb-8 text-center flex items-center justify-center">
           <FaShieldAlt
             className={`text-blue-400 mr-3 ${
@@ -198,7 +198,7 @@ export default function Home({ isSetup, isUnlocked, onSetupClick }) {
 
         {/* Current stage indicator */}
         <div className="flex justify-center mb-8">
-          <div className="inline-flex bg-gray-800 rounded-full px-4 py-2">
+          <div className=" border-2 inline-flex rounded-full px-4 py-2">
             <span className="text-sm">
               Current Stage:
               <span className="ml-2 font-medium">
@@ -333,7 +333,7 @@ export default function Home({ isSetup, isUnlocked, onSetupClick }) {
         </div>
 
         {/* Progress summary text */}
-        <div className="text-center mt-8 bg-gray-800 p-3 rounded-lg">
+        <div className="text-center mt-8 border-2 p-3 rounded-lg">
           <p className="text-sm">
             {!isSetup ? (
               <span>Get started by setting up your master password</span>
@@ -351,32 +351,32 @@ export default function Home({ isSetup, isUnlocked, onSetupClick }) {
         </div>
       </div>
 
+
+      
       {/* Security Features Grid */}
-      <div className="mb-10">
-        <h2 className="text-2xl font-bold mb-6">Security Features</h2>
+      <div className="mb-10 p-6 rounded-xl  border border-gray-200 shadow-sm">
+        <h2 className="text-2xl font-bold mb-6 ">Security Features</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {features.map((feature, index) => (
             <div
               key={index}
-              className="bg-gray-900 hover:bg-gray-800 transition-colors p-6 rounded-xl shadow-lg border border-gray-700 hover:border-blue-500 transform hover:scale-[1.02]"
+              className=" hover:bg-blue-700 transition-colors p-6 rounded-xl shadow-sm border border-gray-200 hover:border-blue-200 transform hover:scale-[1.02]"
             >
               <div className="flex items-center mb-4">
-                <div className="p-3 bg-gray-800 rounded-full mr-4">
+                <div className="p-3 bg-blue-50 rounded-full mr-4 text-center">
                   {feature.icon}
                 </div>
-                <h3 className="text-xl font-bold">{feature.title}</h3>
+                <h3 className="text-xl font-semibold ">{feature.title}</h3>
               </div>
-              <p className="text-gray-300 mb-3">{feature.description}</p>
+              <p className=" mb-3">{feature.description}</p>
               {feature.status && (
-                <div
-                  className={`flex items-center ${feature.statusColor} text-sm font-medium mt-2`}
-                >
+                <div className={`flex items-center ${feature.statusColor} text-sm font-medium mt-2`}>
                   {isSetup ? (
-                    <FaCheck className="mr-2" />
+                    <FaCheck className="mr-2 text-green-600" />
                   ) : (
-                    <FaExclamationTriangle className="mr-2 animate-pulse" />
+                    <FaExclamationTriangle className="mr-2 text-red-500 animate-pulse" />
                   )}
-                  {feature.status}
+                  <span className="text-gray-700">{feature.status}</span>
                 </div>
               )}
             </div>
@@ -384,8 +384,9 @@ export default function Home({ isSetup, isUnlocked, onSetupClick }) {
         </div>
       </div>
 
+
       {/* Enhanced Security Visualization - Password Storage Process */}
-      <div className="bg-gray-900 rounded-xl p-6 mb-8">
+      <div className=" rounded-xl p-6 mb-8 border-2 ">
         <h2 className="text-2xl font-bold mb-6 flex items-center">
           <FaFingerprint
             className={`text-blue-400 mr-3 ${
@@ -430,10 +431,10 @@ export default function Home({ isSetup, isUnlocked, onSetupClick }) {
 
                 {/* Step 1: You create a password */}
                 <div
-                  className={`relative text-center p-4 ${
+                  className={` border-black relative text-center p-4 ${
                     animationStep === 0
                       ? "bg-blue-900 bg-opacity-20"
-                      : "bg-gray-800"
+                      : ""
                   } rounded-lg w-full md:w-1/5 mb-4 md:mb-0 z-10 transition-colors duration-300`}
                 >
                   <div
@@ -546,7 +547,7 @@ export default function Home({ isSetup, isUnlocked, onSetupClick }) {
               </div>
 
               {/* Visualization of current process state */}
-              <div className="mt-8 p-4 bg-gray-800 bg-opacity-50 rounded-lg border border-gray-700 relative overflow-hidden">
+              <div className="mt-8 p-4 bg-opacity-50 rounded-lg border border-gray-700 relative overflow-hidden">
                 <div className="text-center text-sm text-blue-400 font-medium mb-4">
                   {animationStep === 0
                     ? "Your password is created"
@@ -659,7 +660,7 @@ export default function Home({ isSetup, isUnlocked, onSetupClick }) {
       </div>
 
       {/* Master Password Security Flow Visualization */}
-      <div className="bg-gray-900 rounded-xl p-4 sm:p-6 mb-8">
+      <div className="border-2 rounded-xl p-4 sm:p-6 mb-8">
         <h2 className="text-xl sm:text-2xl font-bold mb-4 sm:mb-6 flex items-center">
           <FaKey
             className={`text-yellow-400 mr-2 sm:mr-3 ${

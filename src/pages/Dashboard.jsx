@@ -1,4 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
+import { BsChatLeftTextFill } from "react-icons/bs";
+import ModeToggle from "../components/mode-toggle";
 import {
   FaUserCircle,
   FaLock,
@@ -170,7 +172,7 @@ export default function Dashboard() {
               <FaLock size={40} className="text-yellow-500" />
             </div>
             <h2 className="text-2xl font-bold mt-4">Vault Access Required</h2>
-            <p className="text-gray-300 mt-2 mb-6">
+            <p className=" mt-2 mb-6">
               {!isSetup
                 ? "You need to set up your master password first"
                 : "You need to unlock your vault to access this feature"}
@@ -198,11 +200,13 @@ export default function Dashboard() {
         return <TwoFactorAuth />;
       case "LogOut":
         return <div className="text-center">Logging out...</div>;
-
       case "MasterPasswordSetup":
         return <MasterPasswordSetup />;
       case "Settings":
-        return <div className="text-center">Redirecting to settings...</div>;
+        return navigate("/settings")
+      case "Support":
+        return navigate("/support");
+
 
       case "Home":
       default:
@@ -216,11 +220,12 @@ export default function Dashboard() {
     }
   };
 
-  useEffect(() => {
-    if (selectedOption === "Settings") {
-      navigate("/settings");
-    }
-  }, [selectedOption, navigate]);
+  // useEffect(() => {
+  //   if (selectedOption === "Settings") {
+  //     navigate("/settings");
+  //   }
+  // }, [selectedOption, navigate]);
+
 
   useEffect(() => {
     if (selectedOption === "LogOut") {
@@ -233,7 +238,8 @@ export default function Dashboard() {
   }, [selectedOption]);
 
   return (
-    <div className="flex min-h-screen bg-gray-800">
+    // <div className="flex min-h-screen bg-gray-800">
+    <div className="flex min-h-screen">
       {isMobile && isSidebarOpen && (
         <div
           className="fixed inset-0 bg-black bg-opacity-50 z-20 transition-opacity duration-300"
@@ -304,6 +310,12 @@ export default function Dashboard() {
                 color: "text-silver-400",
                 label: "Settings",
               },
+              {
+                name: "Support",
+                icon: BsChatLeftTextFill,
+                color: "text-cyan-400",
+                label: "Support",
+              },
             ].map(({ name, icon: Icon, color, label }) => (
               <li key={name}>
                 <button
@@ -336,11 +348,14 @@ export default function Dashboard() {
       </div>
 
       {/* Main content */}
-      <div className="flex-1 flex flex-col bg-gray-800 text-white">
+      <div className="flex-1 flex flex-col">
         {/* Navbar */}
-        <div className="bg-gray-900 text-white shadow-lg">
+        {/* <div className=" mx-auto border-2 rounded-full text-white shadow-lg max-w-7xl my-4 ">
+
           <div className="container mx-auto px-4 py-3">
-            <div className="flex justify-between items-center">
+
+            <div className="flex justify-between ">
+
               <div className="flex items-center space-x-4">
                 <button
                   className="p-2 hover:bg-gray-700 rounded-md transition-colors"
@@ -357,7 +372,8 @@ export default function Dashboard() {
                 </h1>
               </div>
 
-              <div className="flex items-center space-x-3">
+              <div className="flex items-center space-x-5">
+                <ModeToggle/>
                 <button
                   onClick={() => {
                     if (isUnlocked) {
@@ -386,6 +402,11 @@ export default function Dashboard() {
                   </span>
                 </button>
 
+                <button 
+                onClick={() => navigate('/support')} title="PassVault Chat Support" >
+                  <BsChatLeftTextFill className="text-2xl h-8 w-8 text-gray-300 hover:cursor-pointer " />
+                </button>
+
                 <button
                   className="p-1 rounded-full hover:bg-gray-700 transition-colors hover:cursor-pointer "
                   onClick={() => setIsModalOpen(!isModalOpen)}
@@ -393,9 +414,83 @@ export default function Dashboard() {
                   <FaUserCircle className="text-2xl h-8 w-8 text-gray-300" />
                 </button>
               </div>
+
+            </div>
+
+          </div>
+        </div> */}
+
+        {/* Navbar */}
+        <nav className="mx-6 md:mx-8 lg:mx-auto lg:w-5xl xl:w-6xl border-2 border-gray-700 rounded-full shadow-lg my-4">
+          <div className="px-4 md:px-6 py-3">
+            <div className="flex justify-between items-center">
+              {/* Left Section */}
+              <div className="flex items-center space-x-3 md:space-x-4">
+                <button
+                  className="p-2 hover:bg-gray-700 rounded-md transition-colors"
+                  onClick={() => setIsSidebarOpen(!isSidebarOpen)}
+                  aria-label="Toggle sidebar"
+                >
+                  <FaBars className=" h-5 w-5 md:h-6 md:w-6 hover:cursor-pointer" />
+                </button>
+                <h1
+                  className="text-xl md:text-2xl lg:text-3xl font-bold cursor-pointer hidden md:block"
+                  onClick={() => setSelectedOption("Home")}
+                >
+                  PassVault
+                </h1>
+              </div>
+
+              {/* Right Section */}
+              <div className="flex items-center space-x-2 md:space-x-4">
+
+                <button
+                  onClick={() => {
+                    if (isUnlocked) {
+                      lockVault();
+                      setSelectedOption((prev) =>
+                        ["GeneratePassword", "ShowAllPassword"].includes(prev)
+                          ? "Home"
+                          : prev
+                      );
+                    } else {
+                      setSelectedOption("ShowAllPassword");
+                      toast("Please Enter Your Master Password !", {
+                        icon: "ℹ️",
+                      });
+                    }
+                  }}
+                  className={`flex items-center space-x-1.5 md:space-x-2 px-3 md:px-4 py-1.5 md:py-2 rounded-full transition-colors ${
+                    isUnlocked
+                      ? "bg-red-600 hover:bg-red-700"
+                      : "bg-blue-600 hover:bg-blue-700"
+                  }`}
+                >
+                  <FaLock className="text-xs md:text-sm" />
+                  <span className="hidden sm:inline text-xs md:text-sm font-medium">
+                    {isUnlocked ? "Lock Vault" : "Unlock Vault"}
+                  </span>
+                </button>
+
+                <button
+                  onClick={() => navigate("/support")}
+                  title="PassVault Chat Support"
+                  className="p-2  rounded-md transition-colors"
+                >
+                  <BsChatLeftTextFill className=" h-5 w-5 md:h-6 md:w-6 hover:cursor-pointer" />
+                </button>
+
+                <button
+                  className="p-2 rounded-full  transition-colors"
+                  onClick={() => setIsModalOpen(!isModalOpen)}
+                >
+                  <FaUserCircle className=" h-5 w-5 md:h-6 md:w-6" />
+                </button>
+                <ModeToggle />
+              </div>
             </div>
           </div>
-        </div>
+        </nav>
 
         <div ref={modalRef}>
           <ProfileModal

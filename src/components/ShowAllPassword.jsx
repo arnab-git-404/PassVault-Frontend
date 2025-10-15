@@ -5,7 +5,7 @@ import { useGlobalContext } from "../context/context";
 import { useMasterPassword } from "../context/MasterPasswordContext";
 // import { toast } from "react-toastify";
 import { useLoadingBar } from "react-top-loading-bar";
-
+import { Button } from "@/components/ui/button";
 import { toast } from 'react-hot-toast';
 
 import {
@@ -67,7 +67,8 @@ const { masterKey, masterSalt   } = useMasterPassword();
   
   const fetchSavedPasswords = async () => {
     if (!user?.email){
-      return;
+
+      return toast.error("User not found! Please log in again.");
     }
     start();
     setLoading(true);
@@ -437,15 +438,15 @@ const { masterKey, masterSalt   } = useMasterPassword();
 
   return (
 
-    <div className="w-full max-w-5xl p-6" >  
-    <div className="p-4 bg-gray-800 text-white rounded shadow-lg w-full">
+    <div className="w-full border-2 border-white rounded-2xl max-w-5xl p-6 shadow-2xl shadow-black" >  
+    <div className="p-4 rounded  w-full">
       <h2 className="text-2xl font-bold mb-4">Password Manager</h2>
 
       <div className="mb-6">
         <input
           type="text"
           placeholder="Platform/Website Name"
-          className="w-full p-2 mb-2 bg-gray-700 rounded"
+              className="w-full p-2 mb-2 border rounded border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
         />
@@ -454,7 +455,7 @@ const { masterKey, masterSalt   } = useMasterPassword();
           <input
             type="password"
             placeholder="Password"
-            className="w-full p-2 mb-2 bg-gray-700 rounded"
+              className="w-full p-2 mb-2 border rounded border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
@@ -519,27 +520,27 @@ const { masterKey, masterSalt   } = useMasterPassword();
 
       {/* Delete Confirmation */}
       {showDeleteConfirm && (
-        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
-          <div className="bg-gray-800 p-6 rounded-lg shadow-lg max-w-sm w-full">
+        <div className="fixed inset-0 flex items-center justify-center bg-opacity-50 z-50 ">
+          <div className="p-6 rounded-lg shadow-lg max-w-sm w-full bg-white dark:bg-[#020618] border-2 border-black">
             <h3 className="text-xl font-bold mb-4">Confirm Delete</h3>
             <p className="mb-6">
               Are you sure you want to delete this password? This action cannot
               be undone.
             </p>
 
-            <div className="flex justify-end space-x-3">
-              <button
-                className="hover:cursor-pointer px-4 py-2 bg-gray-700 rounded hover:bg-gray-600"
+            <div className="flex justify-end space-x-3 ">
+              <Button
+                className="hover:cursor-pointer px-4 py-2  rounded "
                 onClick={cancelDelete}
               >
                 Cancel
-              </button>
-              <button
-                className="hover:cursor-pointer px-4 py-2 bg-red-600 rounded hover:bg-red-700"
+              </Button>
+              <Button
+                className="dark:text-white hover:cursor-pointer px-4 py-2 bg-red-600 rounded hover:bg-red-700"
                 onClick={handleDelete}
               >
                 Delete
-              </button>
+              </Button>
             </div>
           </div>
         </div>
@@ -581,7 +582,7 @@ const { masterKey, masterSalt   } = useMasterPassword();
             <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div>
           </div>
         ) : savedPasswords.length === 0 ? (
-          <p className="text-gray-400">No saved passwords yet</p>
+          <p className="">No saved passwords yet</p>
 
 
 
@@ -591,26 +592,28 @@ const { masterKey, masterSalt   } = useMasterPassword();
             {savedPasswords.map((item, index) => (
               <div
                 key={item.id || index}
-                className="bg-gray-700 p-4 rounded-lg shadow flex flex-col"
+                className=" border-2 border-white/50 p-4 rounded-lg shadow flex flex-col"
               >
                 <div className="flex justify-between items-center mb-2">
                   <h4 className="font-bold text-lg truncate">{item.title}</h4>
                   <div className="flex space-x-2">
                     <button
+                    title="Show Password"
                       onClick={() => togglePasswordVisibility(item.id)}
-                      className="text-gray-400 hover:text-white p-1 hover:cursor-pointer "
+                      className=" p-1 hover:cursor-pointer hover:scale-125"
                     >
-                      {showPasswords[item.id] ? <FaEyeSlash /> : <FaEye />}
+                      {showPasswords[item.id] ?  <FaEye /> : <FaEyeSlash />}
                     </button>
                     <button
+                    title=" Copy Password"
                       onClick={() => copyToClipboard(item)}
-                      className="hover:cursor-pointer text-gray-400 hover:text-white p-1"
+                      className="hover:cursor-pointer  hover:scale-125 p-1"
                     >
                       <FaCopy />
                     </button>
                   </div>
                 </div>
-                <div className="bg-gray-800 p-2 rounded mt-1">
+                <div className=" border-2 p-2 rounded mt-1">
                   <code className="font-mono">
                     {showPasswords[item.id]
                       ? item.password
@@ -619,13 +622,15 @@ const { masterKey, masterSalt   } = useMasterPassword();
                 </div>
                 <div className="mt-auto pt-3 flex justify-end space-x-2">
                   <button
-                    className=" hover:cursor-pointer text-blue-400 hover:text-blue-300 p-1"
+                  title="Edit Password"
+                    className=" hover:cursor-pointer text-blue-700 hover:text-blue-500 p-1"
                     onClick={() => startEdit(item)}
                   >
                     <FaEdit />
                   </button>
                   <button
-                    className="hover:cursor-pointer text-red-400 hover:text-red-300 p-1"
+                  title="Delete Password"
+                    className="hover:cursor-pointer text-red-700 hover:text-red-500 p-1"
                     onClick={() => confirmDelete(item.id)}
                   >
                     <FaTrash />

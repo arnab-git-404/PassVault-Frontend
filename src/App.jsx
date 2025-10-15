@@ -18,6 +18,7 @@ import PlaceholderPage from "./pages/PlaceholderPage";
 import Settings from "./pages/Settings";
 import SupportPanel from "./pages/Support";
 import AdminSupport from "./pages/AdminDashboard";
+import Navbar from "./components/Navbar";
 
 // Components
 import ProtectedRoute from "./components/ProtectedRoute";
@@ -30,6 +31,8 @@ function App() {
         <Router>
           {/* <ToastContainer theme="dark" /> */}
           <Toaster />
+          {/* <Navbar /> */}
+
           <Routes>
             {/* Public Routes */}
             <Route exact path="/" element={<LandingPage />} />

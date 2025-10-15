@@ -131,7 +131,7 @@ export default function SupportPanel() {
   const renderHome = () => (
     <div className="space-y-8">
       <div className="text-center mb-12">
-        <h1 className="text-4xl md:text-5xl font-bold text-slate-900 mb-4">
+        <h1 className="text-4xl md:text-5xl font-bold mb-4">
           Support Center
         </h1>
         <p className="text-lg text-slate-600 max-w-2xl mx-auto">
@@ -202,25 +202,25 @@ export default function SupportPanel() {
         </CardHeader>
         <CardContent>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            <div className="text-center p-4 bg-blue-50 rounded-lg">
+            <div className="text-center p-4 rounded-lg">
               <p className="text-2xl font-bold text-blue-600">
                 {tickets.filter((t) => t.status === "open").length}
               </p>
               <p className="text-sm text-slate-600">Open</p>
             </div>
-            <div className="text-center p-4 bg-yellow-50 rounded-lg">
+            <div className="text-center p-4  rounded-lg">
               <p className="text-2xl font-bold text-yellow-600">
                 {tickets.filter((t) => t.status === "in-progress").length}
               </p>
               <p className="text-sm text-slate-600">In Progress</p>
             </div>
-            <div className="text-center p-4 bg-green-50 rounded-lg">
+            <div className="text-center p-4  rounded-lg">
               <p className="text-2xl font-bold text-green-600">
                 {tickets.filter((t) => t.status === "resolved").length}
               </p>
               <p className="text-sm text-slate-600">Resolved</p>
             </div>
-            <div className="text-center p-4 bg-gray-50 rounded-lg">
+            <div className="text-center p-4  rounded-lg">
               <p className="text-2xl font-bold text-gray-600">
                 {tickets.length}
               </p>
@@ -239,7 +239,7 @@ export default function SupportPanel() {
         onClick={() => setActiveView("home")}
         className="mb-6"
       >
-        <ArrowLeft className="h-4 w-4 mr-2" />
+        <ArrowLeft className="h-4 w-4 mr-2 hover:cursor-pointer" />
         Back to Home
       </Button>
 
@@ -327,7 +327,7 @@ export default function SupportPanel() {
                 !formData.email ||
                 !formData.subject
               }
-              className="w-full bg-blue-600 hover:bg-blue-700"
+              className="w-full bg-blue-600 dark:bg-white hover:cursor-pointer hover:bg-blue-700"
             >
               <Send className="h-4 w-4 mr-2" />
               Submit Ticket
@@ -345,45 +345,45 @@ export default function SupportPanel() {
         onClick={() => setActiveView("home")}
         className="mb-6"
       >
-        <ArrowLeft className="h-4 w-4 mr-2" />
+        <ArrowLeft className="h-4 w-4 mr-2 hover:cursor-pointer" />
         Back to Home
       </Button>
 
-      <Card className="border-2 border-green-200 bg-green-50">
+      <Card className="border-2 border-green-200 dark:text-white shadow-lg">
         <CardHeader>
           <div className="flex items-center gap-3">
-            <CheckCircle2 className="h-12 w-12 text-green-600" />
+            <CheckCircle2 className="h-12 w-12 text-green-300" />
             <div>
-              <CardTitle className="text-2xl text-green-900">
+              <CardTitle className="text-2xl text-green-300">
                 Ticket Created Successfully!
               </CardTitle>
-              <CardDescription className="text-green-700">
+              <CardDescription className="text-green-300">
                 Your support request has been submitted
               </CardDescription>
             </div>
           </div>
         </CardHeader>
         <CardContent className="space-y-6">
-          <div className="bg-white p-6 rounded-lg border-2 border-green-300">
-            <p className="text-sm text-slate-600 mb-2">Your Ticket ID:</p>
-            <p className="text-3xl font-bold text-slate-900 mb-4">
+          <div className=" p-6 rounded-lg border-2 border-green-500">
+            <p className="text-sm mb-2">Your Ticket ID:</p>
+            <p className="text-3xl font-bold mb-4">
               {selectedTicket?.id}
             </p>
-            <p className="text-sm text-slate-600">
+            <p className="text-sm ">
               Save this ID to track your ticket status. We'll also send updates
               to <strong>{selectedTicket?.email}</strong>
             </p>
           </div>
 
           <div className="grid md:grid-cols-2 gap-4">
-            <div className="bg-white p-4 rounded-lg border">
-              <p className="text-xs text-slate-500 mb-1">Subject</p>
-              <p className="font-semibold text-slate-900">
+            <div className=" p-4 rounded-lg border-2">
+              <p className="text-xs mb-1">Subject</p>
+              <p className="font-semibold">
                 {selectedTicket?.subject}
               </p>
             </div>
-            <div className="bg-white p-4 rounded-lg border">
-              <p className="text-xs text-slate-500 mb-1">Priority</p>
+            <div className=" p-4 rounded-lg border-2">
+              <p className="text-xs mb-1">Priority</p>
               <Badge className={getPriorityColor(selectedTicket?.priority)}>
                 {selectedTicket?.priority.toUpperCase()}
               </Badge>
@@ -396,7 +396,7 @@ export default function SupportPanel() {
                 setSelectedTicket(selectedTicket);
                 setActiveView("ticket");
               }}
-              className="flex-1"
+              className="flex-1 hover:cursor-pointer"
             >
               <Ticket className="h-4 w-4 mr-2" />
               View Ticket Details
@@ -404,7 +404,7 @@ export default function SupportPanel() {
             <Button
               onClick={() => setActiveView("create")}
               variant="outline"
-              className="flex-1"
+              className="flex-1 hover:cursor-pointer"
             >
               Create Another Ticket
             </Button>
@@ -419,9 +419,9 @@ export default function SupportPanel() {
       <Button
         variant="ghost"
         onClick={() => setActiveView("home")}
-        className="mb-6"
+        className="mb-6 hover:cursor-pointer"
       >
-        <ArrowLeft className="h-4 w-4 mr-2" />
+        <ArrowLeft className="h-4 w-4 mr-2 hover:cursor-pointer" />
         Back to Home
       </Button>
 
@@ -469,7 +469,7 @@ export default function SupportPanel() {
         onClick={() => setActiveView("home")}
         className="mb-6"
       >
-        <ArrowLeft className="h-4 w-4 mr-2" />
+        <ArrowLeft className="h-4 w-4 mr-2 hover:cursor-pointer" />
         Back to Home
       </Button>
 
@@ -541,7 +541,7 @@ export default function SupportPanel() {
         onClick={() => setActiveView("mytickets")}
         className="mb-6"
       >
-        <ArrowLeft className="h-4 w-4 mr-2" />
+        <ArrowLeft className="h-4 w-4 mr-2 hover:cursor-pointer " />
         Back to All Tickets
       </Button>
 
@@ -662,7 +662,7 @@ export default function SupportPanel() {
   );
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 p-4 md:p-8">
+    <div className="min-h-screen p-4 md:p-8">
       <div className="max-w-7xl mx-auto">
         {activeView === "home" && renderHome()}
         {activeView === "create" && renderCreate()}

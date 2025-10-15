@@ -5,6 +5,7 @@ import { useLoadingBar } from "react-top-loading-bar";
 
 import { toast } from 'react-hot-toast';
 import { useMasterPassword } from "../context/MasterPasswordContext";
+import { Button } from "@/components/ui/button";
 
 
 const VaultUnlock = () => {
@@ -65,27 +66,28 @@ const VaultUnlock = () => {
 
   if (!isUnlocked) {
     return (
-      <div className="w-full max-w-md p-6 bg-gray-900 rounded-lg shadow-lg">
+      <div className="w-full max-w-md p-6  border-2 rounded-lg shadow-lg ">
         <h2 className="text-2xl font-bold mb-4">Unlock Your Vault</h2>
-        <p className="mb-4 text-gray-300">
+        <p className="mb-4">
           Enter your master password to access your saved passwords.
-        </p>
+        </p>  
 
         <input
           type="password"
           placeholder="Master Password"
-          className="w-full p-2 mb-4 bg-gray-700 rounded"
+          className="w-full p-2 mb-4 rounded border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           onKeyPress={(e) => e.key === "Enter" && handleUnlock()}
         />
 
-        <button
-          className="hover:cursor-pointer w-full bg-blue-600 p-2 rounded"
+        <Button
+          className="hover:cursor-pointer w-full"
           onClick={handleUnlock}
         >
           Unlock Vault
-        </button>
+        </Button>
+
       </div>
     );
   }

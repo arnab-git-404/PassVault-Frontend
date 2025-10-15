@@ -78,7 +78,7 @@ export default function PasswordGenerator() {
   };
 
   return (
-    <div className="p-6 mx-auto bg-black rounded-xl shadow-md space-y-4  ">
+    <div className="p-6 mx-auto border-2 rounded-xl shadow-md space-y-4  ">
       <h1 className="text-xl font-bold">Password Generator</h1>
 
       <div className="flex items-center border p-2 rounded ">

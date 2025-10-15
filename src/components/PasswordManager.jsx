@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 // import { toast } from "react-toastify";
 import { toast } from 'react-hot-toast';
-
+import { Button } from "@/components/ui/button";
 import GeneratePassword from "./GeneratePassword";
 import { useGlobalContext } from "../context/context";
 import { useMasterPassword } from "../context/MasterPasswordContext";
@@ -84,25 +84,25 @@ const PasswordManager = () => {
 
   return (
     <div className="w-full max-w-4xl p-6">
-      <h2 className="text-2xl font-bold mb-6 text-center">
+      <h2 className="text-5xl font-bold mb-6 text-center">
         Password Manager
       </h2>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         {/* Password Generation Section */}
-        <div className="bg-gray-700 p-6 rounded-lg shadow-lg">
+        <div className=" border-2 p-6 rounded-lg shadow-lg">
           <GeneratePassword />
         </div>
 
         {/* Password Saving Section */}
-        <div className="bg-gray-700 p-6 rounded-lg shadow-lg">
-          <div className="p-4 bg-gray-800 text-white rounded shadow-lg">
+        <div className=" border-2 border-xl p-6 rounded-lg shadow-lg">
+          <div className="p-4 rounded-lg shadow-lg border-2 ">
             <h2 className="text-2xl font-bold mb-4">Save Password</h2>
 
             <input
               type="text"
               placeholder="Platform/Website Name"
-              className="w-full p-2 mb-2 bg-gray-700 rounded"
+              className="w-full p-2 mb-2 border rounded border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
               value={title}
               onChange={(e) => setTitle(e.target.value)}
             />
@@ -110,17 +110,23 @@ const PasswordManager = () => {
             <input
               type="password"
               placeholder="Password"
-              className="w-full p-2 mb-2 bg-gray-700 rounded"
+              className="w-full p-2 mb-2 border rounded border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
 
-            <button
-              className="w-full bg-blue-600 p-2 rounded hover:bg-blue-700"
+            <Button
+              className="w-full  p-2 rounded  hover:cursor-pointer "
               onClick={handleSavePassword}
             >
               Save
-            </button>
+            </Button>
+            <Button
+              className="w-full mt-2 p-2 rounded hover:cursor-pointer "
+              onClick={() => { setPassword(""); setTitle(""); toast.success("Fields cleared"); }}
+            >
+              Clear
+            </Button>
           </div>
         </div>
       </div>
