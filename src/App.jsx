@@ -120,7 +120,7 @@ function LayoutWithConditionalNavbar({ children }) {
   const location = useLocation();
 
   // All routes that start with these prefixes are "protected"
-  const protectedPrefixes = ["/dashboard", "/support", "/settings", "/admin"];
+  const protectedPrefixes = ["/dashboard", "/settings", "/admin"];
 
   // Hide Navbar if route starts with any protected prefix
   const hideNavbar = protectedPrefixes.some((prefix) =>
@@ -143,14 +143,14 @@ function App() {
 
         <LayoutWithConditionalNavbar>
           <Routes>
-            {/* Public Routes */}
+            {/* ========== Public Routes ========== */}
             <Route path="/tt" element={<LandingPagee />} />
             <Route path="/" element={<LandingPage />} />
             <Route path="/signup" element={<UserSignUp />} />
             <Route path="/signin" element={<UserSignIn />} />
             <Route path="/forget-password" element={<UserForgetPassword />} />
 
-            {/* Protected Routes */}
+            {/* ========== Protected User Routes ========== */}
             <Route
               path="/dashboard"
               element={
@@ -175,6 +175,7 @@ function App() {
                 </ProtectedRoute>
               }
             />
+            {/* ========== Protected Admin Routes ========== */}
             <Route
               path="/admin"
               element={
@@ -184,7 +185,7 @@ function App() {
               }
             />
 
-            {/* Catch-All (for under construction pages, etc.) */}
+            {/* ========== Dynamic/Catch-All Routes ========== */}
             <Route path="/:pageType" element={<PlaceholderPage />} />
           </Routes>
         </LayoutWithConditionalNavbar>
