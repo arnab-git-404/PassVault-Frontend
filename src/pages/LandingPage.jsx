@@ -1724,13 +1724,14 @@ animationType="rotate"
             raysColor={
               localStorage.getItem("vite-ui-theme") === "dark"
                 ? "#00ffff"
-                : null
+                : "#00ffff"
+                
             }
             raysSpeed={1.5}
             lightSpread={2}
             rayLength={3}
             followMouse={true}
-            mouseInfluence={1}
+            mouseInfluence={0.5}
             noiseAmount={0}
             distortion={0}
             className="custom-rays"
@@ -1815,9 +1816,6 @@ animationType="rotate"
         </div>
       </section>
 
-      {/* Security Visualization */}
-
-      <Flow_Visualization />
 
       {/* Password Generator */}
       <section className="py-20 px-6">
