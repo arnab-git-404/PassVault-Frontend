@@ -12,6 +12,9 @@ import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Badge } from "@/components/ui/badge";
+import { toast } from "react-hot-toast";
+import { useGlobalContext } from "@/context/context";
+
 import {
   Mail,
   MessageSquare,
@@ -27,7 +30,7 @@ import {
 
 export default function SupportPanel() {
 
-
+  const { userLoggedIn } = useGlobalContext();
 
 
   const [activeView, setActiveView] = useState("home");
@@ -133,11 +136,9 @@ export default function SupportPanel() {
   };
 
   const renderHome = () => (
-    <div className="space-y-8">
+    <div className="mt-20 max-w-5xl mx-auto ">
       <div className="text-center mb-12">
-        <h1 className="text-4xl md:text-5xl font-bold mb-4">
-          Support Center
-        </h1>
+        <h1 className="text-4xl md:text-5xl font-bold mb-4">Support Center</h1>
         <p className="text-lg text-slate-600 max-w-2xl mx-auto">
           Submit tickets, track status, and get help from our support team
         </p>
@@ -241,9 +242,9 @@ export default function SupportPanel() {
       <Button
         variant="ghost"
         onClick={() => setActiveView("home")}
-        className="mb-6"
+        className="mb-6 hover:cursor-pointer"
       >
-        <ArrowLeft className="h-4 w-4 mr-2 hover:cursor-pointer" />
+        <ArrowLeft className="h-4 w-4 mr-2 " />
         Back to Home
       </Button>
 
@@ -347,9 +348,9 @@ export default function SupportPanel() {
       <Button
         variant="ghost"
         onClick={() => setActiveView("home")}
-        className="mb-6"
+        className="mb-6 hover:cursor-pointer"
       >
-        <ArrowLeft className="h-4 w-4 mr-2 hover:cursor-pointer" />
+        <ArrowLeft className="h-4 w-4 mr-2 " />
         Back to Home
       </Button>
 
@@ -370,9 +371,7 @@ export default function SupportPanel() {
         <CardContent className="space-y-6">
           <div className=" p-6 rounded-lg border-2 border-green-500">
             <p className="text-sm mb-2">Your Ticket ID:</p>
-            <p className="text-3xl font-bold mb-4">
-              {selectedTicket?.id}
-            </p>
+            <p className="text-3xl font-bold mb-4">{selectedTicket?.id}</p>
             <p className="text-sm ">
               Save this ID to track your ticket status. We'll also send updates
               to <strong>{selectedTicket?.email}</strong>
@@ -382,9 +381,7 @@ export default function SupportPanel() {
           <div className="grid md:grid-cols-2 gap-4">
             <div className=" p-4 rounded-lg border-2">
               <p className="text-xs mb-1">Subject</p>
-              <p className="font-semibold">
-                {selectedTicket?.subject}
-              </p>
+              <p className="font-semibold">{selectedTicket?.subject}</p>
             </div>
             <div className=" p-4 rounded-lg border-2">
               <p className="text-xs mb-1">Priority</p>
@@ -425,7 +422,7 @@ export default function SupportPanel() {
         onClick={() => setActiveView("home")}
         className="mb-6 hover:cursor-pointer"
       >
-        <ArrowLeft className="h-4 w-4 mr-2 hover:cursor-pointer" />
+        <ArrowLeft className="h-4 w-4 mr-2 " />
         Back to Home
       </Button>
 
@@ -471,9 +468,9 @@ export default function SupportPanel() {
       <Button
         variant="ghost"
         onClick={() => setActiveView("home")}
-        className="mb-6"
+        className="mb-6 hover:cursor-pointer "
       >
-        <ArrowLeft className="h-4 w-4 mr-2 hover:cursor-pointer" />
+        <ArrowLeft className="h-4 w-4 mr-2 " />
         Back to Home
       </Button>
 
@@ -489,7 +486,7 @@ export default function SupportPanel() {
             <div className="text-center py-12">
               <Ticket className="h-16 w-16 text-slate-300 mx-auto mb-4" />
               <p className="text-slate-500">No tickets found</p>
-              <Button onClick={() => setActiveView("create")} className="mt-4">
+              <Button onClick={() => setActiveView("create")} className="mt-4 hover:cursor-pointer ">
                 Create Your First Ticket
               </Button>
             </div>
@@ -543,9 +540,9 @@ export default function SupportPanel() {
       <Button
         variant="ghost"
         onClick={() => setActiveView("mytickets")}
-        className="mb-6"
+        className="mb-6 hover:cursor-pointer "
       >
-        <ArrowLeft className="h-4 w-4 mr-2 hover:cursor-pointer " />
+        <ArrowLeft className="h-4 w-4 mr-2 " />
         Back to All Tickets
       </Button>
 
@@ -666,8 +663,8 @@ export default function SupportPanel() {
   );
 
   return (
-    <div className="min-h-screen p-4 md:p-8">
-      <div className="max-w-7xl mx-auto">
+    <div className="min-h-screen md:p-8  ">
+      <div className="mt-20 max-w-5xl mx-auto ">
         {activeView === "home" && renderHome()}
         {activeView === "create" && renderCreate()}
         {activeView === "success" && renderSuccess()}
