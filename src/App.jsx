@@ -52,6 +52,7 @@ function App() {
           
           {/* Dynamic Page Routes */}
           <Route path="/:pageType" element={<PlaceholderPage />} />
+          
         </Routes>
       </Router>
     </>
