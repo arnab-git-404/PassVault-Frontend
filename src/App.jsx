@@ -187,10 +187,10 @@ function App() {
 
             {/* ========== Dynamic/Catch-All Routes ========== */}
             <Route path="/:pageType" element={<PlaceholderPage />} />
+            <Analytics />
           </Routes>
         </LayoutWithConditionalNavbar>
       </Router>
-      <Analytics />
     </ThemeProvider>
   );
 }
