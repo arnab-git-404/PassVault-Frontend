@@ -99,6 +99,7 @@ import {
 import "react-toastify/dist/ReactToastify.css";
 import { Toaster } from "react-hot-toast";
 import { ThemeProvider } from "@/components/theme-provider";
+import { Analytics } from '@vercel/analytics/react';
 
 // Pages
 import LandingPage from "./pages/LandingPage";
@@ -140,7 +141,6 @@ function App() {
     <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
       <Router>
         <Toaster />
-
         <LayoutWithConditionalNavbar>
           <Routes>
             {/* ========== Public Routes ========== */}
@@ -190,6 +190,7 @@ function App() {
           </Routes>
         </LayoutWithConditionalNavbar>
       </Router>
+      <Analytics />
     </ThemeProvider>
   );
 }
