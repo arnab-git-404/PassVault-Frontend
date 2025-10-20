@@ -1,7 +1,7 @@
 import { useRef, useEffect, useState } from 'react';
 import { Renderer, Program, Triangle, Mesh } from 'ogl';
 
-const DEFAULT_COLOR = '#ffffff';
+const DEFAULT_COLOR = null ;
 
 const hexToRgb = hex => {
   const m = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
@@ -32,7 +32,7 @@ const getAnchorAndDir = (origin, w, h) => {
 
 const LightRays = ({
   raysOrigin = 'top-center',
-  raysColor = DEFAULT_COLOR,
+  raysColor = '',
   raysSpeed = 1,
   lightSpread = 1,
   rayLength = 2,

@@ -1663,52 +1663,8 @@ export default function LandingPage() {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      {/* <div style={{ width: "100%", height: "600px", position: "relative" }}>
-<Prism
-animationType="rotate"
-    timeScale={0.5}
-    height={3.5}
-    baseWidth={5.5}
-    scale={3.6}
-    hueShift={0}
-    colorFrequency={1}
-    noise={0}
-    glow={1}
-  />
-
-        <div className="relative overflow-hidden">
-          <div className="absolute inset-0 "></div>
-          <div className="relative z-10 flex flex-col items-center justify-center min-h-screen px-6">
-            <div className="text-center max-w-4xl mx-auto">
-              <h1 className="text-6xl md:text-8xl font-extrabold mb-6 ">
-                Pass
-              </h1>
-              <p className="text-xl md:text-2xl mb-8 leading-relaxed">
-                Secure your digital world with military-grade encryption.
-                Generate, store, and manage passwords effortlessly.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <button className="bg-gradient-to-r from-cyan-500 to-purple-500 hover:from-cyan-600 hover:to-purple-600 text-white font-semibold py-3 px-8 rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg">
-                  <Link
-                    to="/signup"
-                    className="flex items-center justify-center gap-2"
-                  >
-                    Get Started <FaArrowRight />
-                  </Link>
-                </button>
-                <button className="border-2 border-cyan-400 text-cyan-400 hover:bg-cyan-400 hover:text-slate-900 font-semibold py-3 px-8 rounded-full transition-all duration-300">
-                  Learn More
-                </button>
-              </div>
-            </div>
-          </div>
-          <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-slate-900 to-transparent"></div>
-        </div>
-      </div> */}
-
-      {/* Hero Section */}
       <div style={{ width: "100%", height: "100vh", position: "relative" }}>
-        {/* Prism Background */}
+        
         <div
           style={{
             position: "absolute",
@@ -1719,14 +1675,10 @@ animationType="rotate"
             zIndex: 0,
           }}
         >
+          {localStorage.getItem("vite-ui-theme") === "dark" ? (
           <LightRays
             raysOrigin="top-center"
-            raysColor={
-              localStorage.getItem("vite-ui-theme") === "dark"
-                ? "#00ffff"
-                : "#00ffff"
-                
-            }
+            raysColor="#00ffff"
             raysSpeed={1.5}
             lightSpread={2}
             rayLength={3}
@@ -1735,7 +1687,8 @@ animationType="rotate"
             noiseAmount={0}
             distortion={0}
             className="custom-rays"
-          />
+          />)
+          :null }
         </div>
 
         {/* Content */}
@@ -1751,7 +1704,7 @@ animationType="rotate"
                 Generate, store, and manage passwords effortlessly.
               </p>
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center hover:cursor-pointer ">
               <button className="bg-gradient-to-r from-cyan-500 to-purple-500 hover:from-cyan-600 hover:to-purple-600 text-white font-semibold py-3 px-8 rounded-full transition-all duration-300 transform hover:scale-105 shadow-2xl">
                 <Link
                   to="/signup"
@@ -1760,20 +1713,20 @@ animationType="rotate"
                   Get Started <FaArrowRight />
                 </Link>
               </button>
-              <button className="border-2 border-cyan-400 text-cyan-400 hover:bg-cyan-400 hover:text-slate-900 font-semibold py-3 px-8 rounded-full transition-all duration-300 backdrop-blur-sm bg-slate-900/30">
+              {/* <button className="border-2 border-cyan-400 text-cyan-400 hover:bg-cyan-400 hover:text-slate-900 font-semibold py-3 px-8 rounded-full transition-all duration-300 backdrop-blur-sm bg-slate-900/30">
                 Learn More
-              </button>
+              </button> */}
             </div>
           </div>
         </div>
 
         {/* Scroll Indicator */}
         <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20 flex flex-col items-center animate-bounce">
-          <span className="text-white text-sm font-medium mb-2">Scroll</span>
-          <div className="w-6 h-10 border-2 border-white rounded-full flex items-start justify-center p-2">
-            <div className="w-1 h-3 bg-white rounded-full animate-scroll"></div>
+          <span className=" text-sm font-medium mb-2">Scroll</span>
+          <div className="w-6 h-10 border-2 border-black dark:bg-white rounded-full flex items-start justify-center p-2">
+            <div className="w-1 h-3 bg-black rounded-full animate-scroll"></div>
           </div>
-          <FaChevronDown className="text-white mt-2" />
+          <FaChevronDown className=" mt-2" />
         </div>
 
         {/* Bottom Gradient Fade */}
@@ -1781,7 +1734,7 @@ animationType="rotate"
       </div>
 
       {/* Features Section */}
-      <section className="py-20 px-6">
+      <div className="py-20 px-6 min-h-screen">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-4xl font-bold text-center mb-16">
             Why Choose PassVault?
@@ -1814,23 +1767,23 @@ animationType="rotate"
             </div>
           </div>
         </div>
-      </section>
+      </div>
 
 
       {/* Password Generator */}
-      <section className="py-20 px-6">
+      <div className="px-6 min-h-screen">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-4xl font-bold mb-8 ">
             Generate Strong Passwords
           </h2>
-          <div className=" backdrop-blur-sm p-8 rounded-2xl border border-slate-700">
+          <div className=" backdrop-blur-sm md:p-8 rounded-2xl">
             <GeneratePassword />
           </div>
         </div>
-      </section>
+      </div>
 
       {/* FAQ */}
-      <div className="mx-auto rounded-xl p-6 mb-8 md:w-2/3 mt-16 w-full max-w-6xl ">
+      <div className=" min-h-screen mx-auto rounded-xl p-6 md:w-2/3 mt-16 w-full max-w-6xl ">
         <h2 className="text-4xl font-bold mb-8 flex items-center justify-center ">
           <FaQuestionCircle className="text-blue-600 mr-3" />
           Frequently Asked Questions

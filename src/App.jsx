@@ -116,6 +116,10 @@ import LandingPagee from "./pages/test";
 import Navbar from "./components/Navbar";
 import ProtectedRoute from "./components/ProtectedRoute";
 
+// Scroll Animation
+import { ReactLenis, useLenis } from 'lenis/react'
+
+
 function LayoutWithConditionalNavbar({ children }) {
   const location = useLocation();
 
@@ -136,10 +140,17 @@ function LayoutWithConditionalNavbar({ children }) {
 }
 
 function App() {
+
+const lenis = useLenis((lenis) => {
+    // called every scroll
+    // console.log(lenis)
+  })
+
   return (
     <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
       <Router>
         <Toaster />
+        <ReactLenis root />
         <LayoutWithConditionalNavbar>
           <Routes>
             {/* ========== Public Routes ========== */}
