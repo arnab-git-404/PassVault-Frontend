@@ -62,7 +62,7 @@ const PasswordManager = () => {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
+          // Authorization: `Bearer ${token}`,
         },
         body: JSON.stringify(newEntry),
       });
@@ -83,8 +83,8 @@ const PasswordManager = () => {
   };
 
   return (
-    <div className="w-full max-w-4xl p-6">
-      <h2 className="text-5xl font-bold mb-6 text-center">
+    <div className="w-full max-w-6xl p-6">
+      <h2 className="text-6xl font-bold mb-6 text-center">
         Password Manager
       </h2>
 
@@ -123,7 +123,7 @@ const PasswordManager = () => {
             </Button>
             <Button
               className="w-full mt-2 p-2 rounded hover:cursor-pointer "
-              onClick={() => { setPassword(""); setTitle(""); toast.success("Fields cleared"); }}
+              onClick={() => { setPassword(""); setTitle(""); toast.success("cleared"); }}
             >
               Clear
             </Button>

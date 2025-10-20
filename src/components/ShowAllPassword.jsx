@@ -521,7 +521,7 @@ const { masterKey, masterSalt   } = useMasterPassword();
       {/* Delete Confirmation */}
       {showDeleteConfirm && (
         <div className="fixed inset-0 flex items-center justify-center bg-opacity-50 z-50 ">
-          <div className="p-6 rounded-lg shadow-lg max-w-sm w-full bg-white dark:bg-[#020618] border-2 border-black">
+          <div className="p-6 rounded-lg shadow-lg max-w-sm w-full bg-white dark:bg-[#020618] border-2 border-white/50">
             <h3 className="text-xl font-bold mb-4">Confirm Delete</h3>
             <p className="mb-6">
               Are you sure you want to delete this password? This action cannot
